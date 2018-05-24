@@ -2,27 +2,8 @@ package viewIMPL;
 
 import view.EFurnitureCat;
 import view.IFurniture;
-import view.ILocation;
 
-public class Furniture implements IFurniture {
-
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void getLocation() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setLocation(ILocation newLocation) {
-		// TODO Auto-generated method stub
-
-	}
+public class Furniture extends Displayable implements IFurniture {
 
 	@Override
 	public void setSize() {

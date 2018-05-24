@@ -3,30 +3,11 @@ package viewIMPL;
 import java.util.Iterator;
 
 import view.IBuilding;
-import view.ILocation;
 import view.IPerson;
 import view.IPet;
 import view.IRoom;
 
-public class Building implements IBuilding {
-
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void getLocation() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void setLocation(ILocation newLocation) {
-		// TODO Auto-generated method stub
-
-	}
+public class Building extends Displayable implements IBuilding {
 
 	@Override
 	public void addRoom(IRoom room) {
