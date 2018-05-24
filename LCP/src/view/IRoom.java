@@ -2,7 +2,7 @@ package view;
 
 import java.util.Iterator;
 
-public interface IRoom extends IBuilding{
+public interface IRoom extends IDisplayable{
 	public void addFurniture(final IFurniture furniture);
 	public void removeFurniture(final IFurniture furniture);
 	public Iterator<IFurniture> getFurniture();
