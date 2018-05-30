@@ -1,52 +1,46 @@
 package viewIMPL;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
+import view.IDisplayable;
 import view.IFurniture;
 import view.IRoom;
 
 public class Room extends Displayable implements IRoom {
 
+	private List<IDisplayable> listOfFurniture;
+	private String roomName;
+
+	public Room() {
+		super();
+		this.listOfFurniture = new ArrayList<IDisplayable>();
+	}
+
 	@Override
 	public void addFurniture(IFurniture furniture) {
-		// TODO Auto-generated method stub
-
+		this.listOfFurniture.add(furniture);
 	}
 
 	@Override
 	public void removeFurniture(IFurniture furniture) {
-		// TODO Auto-generated method stub
-
+		this.listOfFurniture.remove(furniture);
 	}
 
 	@Override
-	public Iterator<IFurniture> getFurniture() {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterator<IDisplayable> getFurniture() {
+		return this.listOfFurniture.iterator();
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.roomName;
 	}
 
 	@Override
 	public void setName(String newName) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Integer getFloor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setFloor(Integer floor) {
-		// TODO Auto-generated method stub
-
+		this.roomName = newName;
 	}
 
 }

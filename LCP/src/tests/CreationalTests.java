@@ -4,14 +4,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import factory.Factory;
+import view.IDisplayable;
+
 class CreationalTests {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
-		
-		
-		
+	void BuilderTest() {
+		IDisplayable building = Factory.getInstance().getBuilding();
+		assertEquals("Building", building.getDisplay());
 	}
 
 }

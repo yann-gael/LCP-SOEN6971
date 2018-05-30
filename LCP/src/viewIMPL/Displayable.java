@@ -5,22 +5,27 @@ import view.ILocation;
 
 public class Displayable implements IDisplayable {
 
-	@Override
-	public void display() {
-		// TODO Auto-generated method stub
+	private ILocation displayableLocation;
+	private String typeOfDisplay;
 
+	@Override
+	public String getDisplay() {
+		return this.typeOfDisplay;		
+	}
+	
+	@Override
+	public void setDisplay(String typeOfDisplay) {
+		this.typeOfDisplay = typeOfDisplay;
 	}
 
 	@Override
-	public void getLocation() {
-		// TODO Auto-generated method stub
-
+	public ILocation getLocation() {
+		return this.displayableLocation;
 	}
 
 	@Override
 	public void setLocation(ILocation newLocation) {
-		// TODO Auto-generated method stub
-
+		this.displayableLocation = newLocation;
 	}
 
 }

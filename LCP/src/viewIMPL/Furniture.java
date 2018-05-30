@@ -1,32 +1,35 @@
 package viewIMPL;
 
-import view.EFurnitureCat;
 import view.IFurniture;
 
 public class Furniture extends Displayable implements IFurniture {
 
-	@Override
-	public void setSize() {
-		// TODO Auto-generated method stub
-
+	private Integer size;
+	private String name;
+	protected boolean isMovable;
+	
+	public Furniture() {
+		super();
 	}
 
 	@Override
-	public void getSize() {
-		// TODO Auto-generated method stub
-
+	public void setSize(Integer size) {
+		this.size = size;
 	}
 
 	@Override
-	public EFurnitureCat getType() {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer getSize() {
+		return this.size;
 	}
 
 	@Override
-	public void setType(EFurnitureCat newType) {
-		// TODO Auto-generated method stub
+	public void setName(String name) {
+		this.name = name;
+	}
 
+	@Override
+	public String getName() {
+		return this.name;
 	}
 
 }

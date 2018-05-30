@@ -4,16 +4,20 @@ import view.IPerson;
 
 public class Person extends Displayable implements IPerson {
 
+	private String nameOfPerson;
+
+	public Person() {
+		super();
+	}
+
 	@Override
 	public void setName(String newName) {
-		// TODO Auto-generated method stub
-
+		this.nameOfPerson = newName;
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.nameOfPerson;
 	}
 
 }
