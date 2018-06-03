@@ -4,12 +4,13 @@ import factory.Factory;
 import view.IDisplayable;
 
 public class InitGame implements IInitGame {
+	private final Integer numFloors = 1;
 	
 	private IDisplayable building;
 	
 	@Override
 	public void initBuilding() {
-		this.building = Factory.getInstance().getBuilding(1);
+		this.building = Factory.getInstance().getBuilding(numFloors);
 	}
 
 	@Override
