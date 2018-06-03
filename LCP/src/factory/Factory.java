@@ -12,6 +12,7 @@ import view.IPet;
 import view.IRoom;
 import view.ITile;
 import viewIMPL.Building;
+import viewIMPL.ConstConfig;
 import viewIMPL.Floor;
 import viewIMPL.LocationPoints;
 import viewIMPL.Tile;
@@ -21,9 +22,12 @@ import viewIMPL.Person;
 import viewIMPL.Pet;
 import viewIMPL.Room;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Map.Entry;
 
 public class Factory {
-
+	
 	private static class FactoryUniqueInstanceHolder{
 		private static Factory THE_UNIQUE_FACTORY = new Factory();
 	}
@@ -39,9 +43,31 @@ public class Factory {
 		building.addOccupant(this.getPerson());
 		building.addPet(this.getPet());
 		
-		for(int i = 0; i < numFloors; i++)
+		for(Integer i = 0; i < numFloors; i++)
 		{
-			building.addFloor(this.getFloor(i));
+			/* ONLY FOR VIEW TEST */
+			if(i == 0) {
+				ArrayList<ITile> tiles = new ArrayList<ITile>();
+				Iterator<ITile> allTiles = building.getTiles();
+				
+				Iterator mapItr = ConstConfig.locFirstFloor.entrySet().iterator();
+				
+				while(mapItr.hasNext()) {
+					Map.Entry itrObj = (Map.Entry) mapItr.next();
+					Integer reqX = (Integer) itrObj.getKey();
+					Integer reqY = (Integer) itrObj.getValue();
+					while(allTiles.hasNext()) {
+						if((allTiles.next().getTileX() == reqX) && (allTiles.next().getTileY() == reqY))
+						{
+							
+						}
+					}
+				}
+			}
+			/* ONLY FOR VIEW TEST */
+			IFloor tmpFloor = this.getFloor(i);
+			tmpFloor.setDisplay(i.toString() + "F");
+			building.addFloor(tmpFloor);
 		}
 		
 		building.setDisplay("Building");
@@ -52,18 +78,21 @@ public class Factory {
 	private IFloor getFloor(Integer floorNum) {
 		IFloor floor = new Floor();
 		floor.setFloorNum(floorNum);
+		floor.setDisplay("Floor");
 		return floor;
 	}
 	
 	private IPerson getPerson() {
 		IPerson person = new Person();
 		//person.setLocation(new Tiles(new Point(5, 6)));
+		person.setDisplay("Person");
 		return person;
 	}
 
 	private IPet getPet() {
 		IPet pet = new Pet();
 		//pet.setLocation(new Tiles(new Point(6, 7)));
+		pet.setDisplay("Pet");
 		return pet;
 	}
 
@@ -71,18 +100,21 @@ public class Factory {
 		IRoom room = new Room();
 		room.addFurniture(this.getMoveableFurniture());
 		room.addFurniture(this.getNonMoveableFurniture());
+		room.setDisplay("Room");
 		return room;
 	}
 
 	private IFurniture getMoveableFurniture() {
 		IFurniture furniture = new MoveableFurniture();
 		//furniture.setLocation(new Tiles(new Point(1, 2)));
+		furniture.setDisplay("MFurniture");
 		return furniture;
 	}
 
 	private IFurniture getNonMoveableFurniture() {
 		IFurniture furniture = new NonMoveableFurniture();
 		//furniture.setLocation(new Tiles(new Point(2, 3)));
+		furniture.setDisplay("NMFurniture");
 		return furniture;
 	}
 	

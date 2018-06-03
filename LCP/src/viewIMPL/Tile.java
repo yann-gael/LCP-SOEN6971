@@ -2,12 +2,16 @@ package viewIMPL;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import view.IDisplayable;
 import view.ILocationPoints;
+import view.IObservable;
+import view.IObserver;
 import view.ITile;
 
-public class Tile implements ITile {
+public class Tile implements ITile, IObservable {
 	private ILocationPoints location;
 	private ITile left;
 	private ITile right;
@@ -15,6 +19,10 @@ public class Tile implements ITile {
 	private ITile down;
 	private Integer tileXNum;
 	private Integer tileYNum;
+	private ArrayList<IDisplayable> objectsOnTiles;
+
+	private ArrayList<IObserver> observers;
+	
 	
 	public Tile() {
 		location = null;
@@ -24,6 +32,7 @@ public class Tile implements ITile {
 		down = null;
 		tileXNum = null;
 		tileYNum = null;
+		setObjectsOnTiles(new ArrayList<IDisplayable>());
 	}
 	
 	@Override
@@ -94,6 +103,41 @@ public class Tile implements ITile {
 	@Override
 	public Integer getTileY() {
 		return this.tileYNum;
+	}
+
+	@Override
+	public void notifyObservers() {
+		Iterator itr = this.observers.iterator();
+		while(itr.hasNext())
+		{
+			IObserver obs = (IObserver)itr.next();
+			obs.update(this);
+		}
+	}
+
+	@Override
+	public void addObserver(IObserver observer) {
+		this.observers.add(observer);
+	}
+
+	@Override
+	public void removeObserver(IObserver observer) {
+		this.observers.remove(observer);
+	}
+
+	@Override
+	public Iterator<IObserver> getObserver() {
+		return this.observers.iterator();
+	}
+
+	@Override
+	public ArrayList<IDisplayable> getObjectsOnTiles() {
+		return objectsOnTiles;
+	}
+	
+	@Override
+	public void setObjectsOnTiles(ArrayList<IDisplayable> objectsOnTiles) {
+		this.objectsOnTiles = objectsOnTiles;
 	}
 	
 }

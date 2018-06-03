@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+
 public interface ITile {
 	public void setLocation(ILocationPoints loc);
 	public void setLeft(ITile left);
@@ -8,6 +10,7 @@ public interface ITile {
 	public void setDown(ITile down);
 	public void setTileX(Integer X);
 	public void setTileY(Integer Y);
+	public void setObjectsOnTiles(ArrayList<IDisplayable> objectsOnTiles);
 	
 	public ILocationPoints getLocation();
 	public ITile getLeft();
@@ -16,4 +19,5 @@ public interface ITile {
 	public ITile getDown();
 	public Integer getTileX();
 	public Integer getTileY();
+	public ArrayList<IDisplayable> getObjectsOnTiles();
 }

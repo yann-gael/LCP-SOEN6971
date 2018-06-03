@@ -1,5 +1,8 @@
 package viewIMPL;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import view.IDisplayable;
 import view.ITile;
 
@@ -7,6 +10,7 @@ public class Displayable implements IDisplayable {
 
 	private ITile displayableLocation;
 	private String typeOfDisplay;
+	private ArrayList<ITile> tiles;
 
 	@Override
 	public String getDisplay() {
@@ -26,6 +30,16 @@ public class Displayable implements IDisplayable {
 	@Override
 	public void setLocation(ITile newLocation) {
 		this.displayableLocation = newLocation;
+	}
+
+	@Override
+	public Iterator<ITile> getTiles() {
+		return tiles.iterator();
+	}
+
+	@Override
+	public void setTiles(ArrayList<ITile> tiles) {
+		this.tiles = tiles;
 	}
 
 }
