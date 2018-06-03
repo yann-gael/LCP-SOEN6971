@@ -23,11 +23,11 @@ public class LocationPoints implements ILocationPoints {
 	@Override
 	public void setPositions(Integer tileHeight, Integer tileWidth) {
 		this.swPosition = new Point();
-		this.swPosition.setLocation(this.nwPosition.getX(), this.nwPosition.getY() - tileHeight);
+		this.swPosition.setLocation(this.nwPosition.getX(), this.nwPosition.getY() + tileHeight);
 		this.nePosition = new Point();
 		this.nePosition.setLocation(this.nwPosition.getX() + tileWidth, this.nwPosition.getY());
 		this.sePosition = new Point();
-		this.sePosition.setLocation(this.nePosition.getX(), this.nePosition.getY() - tileHeight);
+		this.sePosition.setLocation(this.nePosition.getX() + tileWidth, this.nePosition.getY() + tileHeight);
 	}
 	
 	@Override

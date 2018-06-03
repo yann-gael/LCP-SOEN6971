@@ -11,7 +11,7 @@ class CreationalTests {
 
 	@Test
 	void BuilderTest() {
-		IDisplayable building = Factory.getInstance().getBuilding();
+		IDisplayable building = Factory.getInstance().getBuilding(1);
 		assertEquals("Building", building.getDisplay());
 	}
 

@@ -9,7 +9,7 @@ public class InitGame implements IInitGame {
 	
 	@Override
 	public void initBuilding() {
-		this.building = Factory.getInstance().getBuilding();
+		this.building = Factory.getInstance().getBuilding(1);
 	}
 
 	@Override
