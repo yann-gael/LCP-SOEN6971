@@ -1,11 +1,11 @@
 package viewIMPL;
 
 import view.IDisplayable;
-import view.ILocation;
+import view.ITile;
 
 public class Displayable implements IDisplayable {
 
-	private ILocation displayableLocation;
+	private ITile displayableLocation;
 	private String typeOfDisplay;
 
 	@Override
@@ -19,12 +19,12 @@ public class Displayable implements IDisplayable {
 	}
 
 	@Override
-	public ILocation getLocation() {
+	public ITile getLocation() {
 		return this.displayableLocation;
 	}
 
 	@Override
-	public void setLocation(ILocation newLocation) {
+	public void setLocation(ITile newLocation) {
 		this.displayableLocation = newLocation;
 	}
 
