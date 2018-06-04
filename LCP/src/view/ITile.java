@@ -2,7 +2,7 @@ package view;
 
 import java.util.ArrayList;
 
-public interface ITile {
+public interface ITile extends IObservable {
 	public void setLocation(ILocationPoints loc);
 	public void setLeft(ITile left);
 	public void setRight(ITile right);

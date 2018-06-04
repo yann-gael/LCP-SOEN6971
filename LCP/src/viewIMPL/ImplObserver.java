@@ -7,10 +7,10 @@ import view.IDisplayable;
 import view.IObserver;
 import view.ITile;
 
-public class Observer implements IObserver {
+public class ImplObserver implements IObserver {
 	String toShow[][] = new String[100][100];
 
-	Observer() {
+	public ImplObserver() {
 		for(int i = 0; i < 100; i++)
 		{
 			for(int j = 0; j < 100; j++)

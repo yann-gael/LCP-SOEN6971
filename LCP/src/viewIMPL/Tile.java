@@ -1,9 +1,7 @@
 package viewIMPL;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import view.IDisplayable;
 import view.ILocationPoints;
@@ -107,10 +105,10 @@ public class Tile implements ITile, IObservable {
 
 	@Override
 	public void notifyObservers() {
-		Iterator itr = this.observers.iterator();
+		Iterator<IObserver> itr = this.observers.iterator();
 		while(itr.hasNext())
 		{
-			IObserver obs = (IObserver)itr.next();
+			IObserver obs = itr.next();
 			obs.update(this);
 		}
 	}

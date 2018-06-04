@@ -8,6 +8,4 @@ public interface IDisplayable {
 	public void setDisplay(String typeOfDisplay);
 	public ITile getLocation();
 	public void setLocation(final ITile newLocation);
-	public Iterator<ITile> getTiles();
-	public void setTiles(final ArrayList<ITile> tiles);
 }

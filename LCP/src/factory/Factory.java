@@ -1,18 +1,13 @@
 package factory;
 
-import java.awt.Point;
-
-import view.IBuilding;
 import view.IDisplayable;
 import view.IFloor;
 import view.IFurniture;
-import view.ILocationPoints;
 import view.IPerson;
 import view.IPet;
 import view.IRoom;
 import view.ITile;
 import viewIMPL.Building;
-import viewIMPL.ConstConfig;
 import viewIMPL.Floor;
 import viewIMPL.LocationPoints;
 import viewIMPL.Tile;
@@ -23,8 +18,6 @@ import viewIMPL.Pet;
 import viewIMPL.Room;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class Factory {
 	
@@ -40,41 +33,39 @@ public class Factory {
 
 		Building building = new Building();
 		//building.setLocation(new Tile());
+		/*
 		building.addOccupant(this.getPerson());
 		building.addPet(this.getPet());
 		
 		for(Integer i = 0; i < numFloors; i++)
 		{
-			/* ONLY FOR VIEW TEST */
-			if(i == 0) {
-				ArrayList<ITile> tiles = new ArrayList<ITile>();
-				Iterator<ITile> allTiles = building.getTiles();
-				
-				Iterator mapItr = ConstConfig.locFirstFloor.entrySet().iterator();
-				
-				while(mapItr.hasNext()) {
-					Map.Entry itrObj = (Map.Entry) mapItr.next();
-					Integer reqX = (Integer) itrObj.getKey();
-					Integer reqY = (Integer) itrObj.getValue();
-					while(allTiles.hasNext()) {
-						if((allTiles.next().getTileX() == reqX) && (allTiles.next().getTileY() == reqY))
-						{
-							
-						}
-					}
-				}
-			}
-			/* ONLY FOR VIEW TEST */
 			IFloor tmpFloor = this.getFloor(i);
 			tmpFloor.setDisplay(i.toString() + "F");
 			building.addFloor(tmpFloor);
 		}
-		
+		*/
 		building.setDisplay("Building");
 		return building;
-
+		
 	}
 
+	public ITile[][] getTiles(Integer horizontalSize, Integer verticalSize, Integer totalTiles) {
+		ITile[][] tiles = null;
+		if(checkTileComposition(horizontalSize, verticalSize, totalTiles) == true) {
+			tiles = new ITile[totalTiles][totalTiles];
+			ArrayList<ITile> tmpTiles = new ArrayList<ITile>();
+			initTiles(tmpTiles, horizontalSize, verticalSize, totalTiles);
+			int ctr = 0;
+			for(int i = 0; i < totalTiles; i++) {
+				for(int j = 0; j < totalTiles; j++) {
+					tiles[i][j] = tmpTiles.get(ctr);
+					ctr++;
+				}
+			}
+		}
+		return tiles;
+	}
+	
 	private IFloor getFloor(Integer floorNum) {
 		IFloor floor = new Floor();
 		floor.setFloorNum(floorNum);
@@ -120,8 +111,14 @@ public class Factory {
 	
 	public void initTiles(ArrayList<ITile> tiles, Integer horizontalSize, 
 			Integer verticalSize, Integer totalTiles) {
-		while (tiles.size() < totalTiles) {
+		while (tiles.size() < (totalTiles * totalTiles) - 1) {
 			addTile(tiles, horizontalSize, verticalSize, totalTiles);
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 	
@@ -135,51 +132,57 @@ public class Factory {
 			return;
 		}
 		
-		if(tiles.size() == totalTiles) {
+		if(tiles.size() == (totalTiles * totalTiles)) {
 			System.out.println("Error: addTile: Maximum possible number of tiles already exist");
 		}
 		
-		for(int i = 0; i < tiles.size(); i++) {
-			if(tiles.size() == 0) {
+		if(tiles.size() == 0) {
+			ITile tmpTileOne = new Tile();
+			tmpTileOne.setLocation(new LocationPoints(tileHeight, tileWidth));
+			tmpTileOne.setTileX(0);
+			tmpTileOne.setTileY(0);
+			tiles.add(tmpTileOne);
+			
+			for(int i = 0; i < totalTiles - 1; i++) {
+				ITile prevTile = tiles.get(tiles.size() - 1);
 				ITile tmpTile = new Tile();
-				tmpTile.setLocation(new LocationPoints(tileHeight, tileWidth));
-				tmpTile.setTileX(0);
-				tmpTile.setTileY(0);
+				tmpTile.setLocation(new LocationPoints(prevTile.getLocation().getNEPoint(), 
+						tileHeight, tileWidth));
+				
+				tmpTile.setLeft(prevTile);
+				prevTile.setRight(tmpTile);
+				tmpTile.setTileX(prevTile.getTileX() + 1);
+				tmpTile.setTileY(prevTile.getTileY());
 				tiles.add(tmpTile);
 			}
+		}
+		else {
+			ITile topTile = null;
+			if(tiles.size() >= totalTiles) {
+				/* There is tiles at top */
+				topTile = tiles.get(0);
+				while(topTile.getDown() != null) {
+					topTile = topTile.getDown();
+				}
+			}
 			else {
-				Integer maxTilesHorizontally = horizontalSize / tileHeight;
-				ITile prevTile = tiles.get(tiles.size() - 1);
-				
-				if(prevTile.getTileX() < maxTilesHorizontally) {
-					ITile tmpTile = new Tile();
-					tmpTile.setLocation(new LocationPoints(prevTile.getLocation().getNEPoint(), 
-							tileHeight, tileWidth));
+				System.out.println("TOP NOT FOUND");
+			}
+			
+			for(int i = 0; i < totalTiles; i++) {
+				ITile tmpTile = new Tile();
+				if(topTile.getTileX() != 0) {
+					ITile prevTile = tiles.get(tiles.size() - 1);
 					tmpTile.setLeft(prevTile);
 					prevTile.setRight(tmpTile);
-					if(prevTile.getUp() != null) {
-						tmpTile.setUp(prevTile.getUp().getRight());
-						prevTile.getUp().getRight().setDown(tmpTile);
-					}
-					tmpTile.setTileX(prevTile.getTileX() + 1);
-					tmpTile.setTileY(prevTile.getTileY());
-					tiles.add(tmpTile);
-				}
-				else if(prevTile.getTileX() == maxTilesHorizontally) {
-					while(prevTile.getLeft() != null) {
-						prevTile = prevTile.getLeft();
-					}
-					
-					ITile tmpTile = new Tile();
-					tmpTile.setLocation(new LocationPoints(prevTile.getLocation().getSWPoint(), 
-							tileHeight, tileWidth));
-					tmpTile.setUp(prevTile);
-					prevTile.setDown(tmpTile);
-					tmpTile.setTileX(prevTile.getTileX());
-					tmpTile.setTileY(prevTile.getTileY() + 1);
-					tiles.add(tmpTile);
 				}
 				
+				tmpTile.setUp(topTile);
+				topTile.setDown(tmpTile);
+				tmpTile.setTileX(topTile.getTileX());
+				tmpTile.setTileY(topTile.getTileY() + 1);
+				topTile = topTile.getRight();
+				tiles.add(tmpTile);
 			}
 		}
 	}

@@ -17,4 +17,7 @@ public interface IBuilding extends IDisplayable {
 	public Iterator<IDisplayable> getFloors();
 	public void setNumFloors(final Integer numFloors);
 	public Integer getNumFloors();
+	
+	public void setTiles(ITile[][] tiles);
+	public Iterator<ITile> getTiles();
 }

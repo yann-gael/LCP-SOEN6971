@@ -17,7 +17,7 @@ public class Building extends Displayable implements IBuilding {
 	private List<IDisplayable> listOfOccupants;
 	private List<IDisplayable> listOfPets;
 	private List<IDisplayable> listOfFloors;
-	private ArrayList<ITile> listOfTiles;
+	private ITile[][] listOfTiles;
 	private Integer numOfFloors;
 
 	public Building(){
@@ -25,8 +25,7 @@ public class Building extends Displayable implements IBuilding {
 		this.listOfFloors = new ArrayList<IDisplayable>();
 		this.listOfOccupants = new ArrayList<IDisplayable>();
 		this.listOfPets = new ArrayList<IDisplayable>();
-		this.listOfTiles = new ArrayList<ITile>();
-		this.initTiles(1000, 1000, 100);
+		this.listOfTiles = new ITile[21][21];	/* TBD */
 	}
 	
 	@Override
@@ -84,7 +83,18 @@ public class Building extends Displayable implements IBuilding {
 		return this.listOfFloors.iterator();
 	}
 
+	/*
 	private void initTiles(Integer horizontalSize, Integer verticalSize, Integer totalTiles) {
 		Factory.getInstance().initTiles(listOfTiles, horizontalSize, verticalSize, totalTiles);
+	}
+	*/
+	
+	@Override
+	public void setTiles(ITile[][] tiles) {
+		for(int i = 0; i < 21; i++) {
+			for(int j = 0; j < 21; j++) {
+				this.listOfTiles[i][j] = tiles[i][j];
+			}
+		}
 	}
 }

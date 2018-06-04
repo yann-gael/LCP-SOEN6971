@@ -1,6 +1,5 @@
 package viewIMPL;
 
-import java.util.HashMap;
 
 import view.IDisplayable;
 
