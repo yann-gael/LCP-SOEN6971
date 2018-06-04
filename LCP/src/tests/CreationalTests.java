@@ -74,19 +74,16 @@ class CreationalTests {
 		Integer floorNumber = 1;
 		IDisplayable floorOne = Factory.getInstance().getFloor(floorNumber, floorDisplay, objTileDetails);
 		floorOne.addObserver(this.observer);
-		floorOne.checkAddition();
 		
 		IObjectOnTile objTileDetails2 = new ObjectOnTile(13, 0, 3, 21);
 		Integer floorNumber2 = 2;
 		IDisplayable floorTwo = Factory.getInstance().getFloor(floorNumber2, floorDisplay, objTileDetails2);
 		floorTwo.addObserver(this.observer);
-		floorTwo.checkAddition();
 		
 		IObjectOnTile objTileDetails3 = new ObjectOnTile(20, 0, 3, 21);
 		Integer floorNumber3 = 3;
 		IDisplayable floorThree = Factory.getInstance().getFloor(floorNumber3, floorDisplay, objTileDetails3);
 		floorThree.addObserver(this.observer);
-		floorThree.checkAddition();
 		
 		((IBuilding)this.building).addFloor(floorOne);
 		((IBuilding)this.building).addFloor(floorTwo);
@@ -122,7 +119,6 @@ class CreationalTests {
 		IObjectOnTile objTileDetails6 = new ObjectOnTile(17, 12, 4, 9);
 		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay, objTileDetails6);
 		room6.addObserver(this.observer);
-		room6.checkAddition();
 		
 		Iterator<IDisplayable> itrFloors = ((IBuilding)this.building).getFloors();
 		int ctr = 0;
@@ -156,52 +152,52 @@ class CreationalTests {
 		
 		IDisplayContent fridgeDisp = new DisplayContent();
 		fridgeDisp.setDisplay("Fridge");
-		IObjectOnTile fridgeTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile fridgeTileDetails = new ObjectOnTile(17, 1, 3, 2);
 		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
 		fridge.addObserver(this.observer);
 		
 		IDisplayContent cupboardDisp = new DisplayContent();
 		cupboardDisp.setDisplay("CupBoard");
-		IObjectOnTile cupboardTileDetails1 = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile cupboardTileDetails1 = new ObjectOnTile(14, 1, 1, 2);
 		IDisplayable cupBoard1 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails1);
 		cupBoard1.addObserver(this.observer);
-		IObjectOnTile cupboardTileDetails2 = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile cupboardTileDetails2 = new ObjectOnTile(15, 3, 2, 2);
 		IDisplayable cupBoard2 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails2);
 		cupBoard2.addObserver(this.observer);
-		IObjectOnTile cupboardTileDetails3 = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile cupboardTileDetails3 = new ObjectOnTile(15, 5, 2, 2);
 		IDisplayable cupBoard3 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails3);
 		cupBoard3.addObserver(this.observer);
-		IObjectOnTile cupboardTileDetails4 = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile cupboardTileDetails4 = new ObjectOnTile(17, 3, 3, 4);
 		IDisplayable cupBoard4 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails4);
 		cupBoard4.addObserver(this.observer);
 		
 		IDisplayContent windowDisp = new DisplayContent();
 		windowDisp.setDisplay("Window");
-		IObjectOnTile windowTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile windowTileDetails = new ObjectOnTile(15, 7, 2, 2);
 		IDisplayable kitchenWindow = Factory.getInstance().getNonMoveableFurniture(windowDisp, windowTileDetails);
 		kitchenWindow.addObserver(this.observer);
 		
 		IDisplayContent tableDisp = new DisplayContent();
 		tableDisp.setDisplay("Table");
-		IObjectOnTile tableTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile tableTileDetails = new ObjectOnTile(15, 7, 1, 2);
 		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
 		kitchenTable.addObserver(this.observer);
 		
 		IDisplayContent waterDisp = new DisplayContent();
 		waterDisp.setDisplay("Water");
-		IObjectOnTile waterTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile waterTileDetails = new ObjectOnTile(17, 10, 2, 1);
 		IDisplayable water = Factory.getInstance().getNonMoveableFurniture(waterDisp, waterTileDetails);
 		water.addObserver(this.observer);
 		
 		IDisplayContent stairDiagonalDisp = new DisplayContent();
 		stairDiagonalDisp.setDisplay("StairDiag");
-		IObjectOnTile stairDiagTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile stairDiagTileDetails = new ObjectOnTile(15, 10, 2, 1);
 		IDisplayable stairDiag = Factory.getInstance().getNonMoveableFurniture(stairDiagonalDisp, stairDiagTileDetails);
 		stairDiag.addObserver(this.observer);
 		
 		IDisplayContent stairDownDisp = new DisplayContent();
 		stairDownDisp.setDisplay("StairDown");
-		IObjectOnTile stairDownTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IObjectOnTile stairDownTileDetails = new ObjectOnTile(17, 11, 4, 1);
 		IDisplayable stairDown = Factory.getInstance().getNonMoveableFurniture(stairDownDisp, stairDownTileDetails);
 		stairDown.addObserver(this.observer);
 		

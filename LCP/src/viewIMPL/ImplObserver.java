@@ -34,10 +34,11 @@ public class ImplObserver implements IObserver {
 		Integer startY = tileDet.getY();
 		Integer ht = tileDet.getHeight();
 		Integer wd = tileDet.getWidth();
-		
-		for(int i = startY; i < ht; i++) {
-			for(int j = startX; j < wd; j++) {
-				toShow[i][j] += disp.getDisplay();
+		System.out.println("STARTX : " + startX.toString() + ", STARTY : " + startY.toString() +
+				", HEIGHT: " + ht.toString() + ", Width : " + wd.toString() + " --- DISPLAY : " + disp.getDisplay());
+		for(int i = 0; i < ht; i++) {
+			for(int j = 0; j < wd; j++) {
+				toShow[startY - i][j + startX] += disp.getDisplay().charAt(0);
 			}
 		}
 		 
