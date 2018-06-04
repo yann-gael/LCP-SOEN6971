@@ -1,11 +1,10 @@
 package view;
 
-import java.util.ArrayList;
-import java.util.Iterator;
+import viewIMPL.ObjectOnTile;
 
 public interface IDisplayable {
 	public String getDisplay();
 	public void setDisplay(String typeOfDisplay);
-	public ITile getLocation();
-	public void setLocation(final ITile newLocation);
+	public IObjectOnTile getTileDetails();
+	public void setTiles(IObjectOnTile tileDetails);
 }

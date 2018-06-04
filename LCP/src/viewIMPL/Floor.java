@@ -1,15 +1,13 @@
 package viewIMPL;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import view.IDisplayable;
 import view.IFloor;
-import view.ITile;
 import view.IRoom;
 
-public class Floor implements IFloor {
+public class Floor extends Displayable implements IFloor {
 
 	private List<IDisplayable> listOfRooms;
 	
@@ -21,26 +19,6 @@ public class Floor implements IFloor {
 	@Override
 	public Integer getFloorNum() {
 		return null;
-	}
-
-	@Override
-	public String getDisplay() {
-		return null;
-	}
-
-	@Override
-	public void setDisplay(String typeOfDisplay) {
-		
-	}
-
-	@Override
-	public ITile getLocation() {
-		return null;
-	}
-
-	@Override
-	public void setLocation(ITile newLocation) {
-		
 	}
 
 	@Override
@@ -56,17 +34,5 @@ public class Floor implements IFloor {
 	@Override
 	public Iterator<IDisplayable> getRoom() {
 		return this.listOfRooms.iterator();
-	}
-
-	@Override
-	public Iterator<ITile> getTiles() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setTiles(ArrayList<ITile> tiles) {
-		// TODO Auto-generated method stub
-		
 	}
 }

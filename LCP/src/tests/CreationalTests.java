@@ -56,6 +56,6 @@ class CreationalTests {
 	
 	@Test
 	void testFloors() {
-		IFloor floorOne = Factory.getInstance()
+		IFloor floorOne = Factory.getInstance().get
 	}
 }

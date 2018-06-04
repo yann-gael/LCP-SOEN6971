@@ -1,16 +1,12 @@
 package viewIMPL;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import view.IDisplayable;
-import view.ITile;
+import view.IObjectOnTile;
 
 public class Displayable implements IDisplayable {
 
-	private ITile displayableLocation;
+	private IObjectOnTile tileDetails;
 	private String typeOfDisplay;
-	private ArrayList<ITile> tiles;
 
 	@Override
 	public String getDisplay() {
@@ -23,23 +19,13 @@ public class Displayable implements IDisplayable {
 	}
 
 	@Override
-	public ITile getLocation() {
-		return this.displayableLocation;
+	public IObjectOnTile getTileDetails() {
+		return tileDetails;
 	}
 
 	@Override
-	public void setLocation(ITile newLocation) {
-		this.displayableLocation = newLocation;
-	}
-
-	@Override
-	public Iterator<ITile> getTiles() {
-		return tiles.iterator();
-	}
-
-	@Override
-	public void setTiles(ArrayList<ITile> tiles) {
-		this.tiles = tiles;
+	public void setTiles(IObjectOnTile tileDetails) {
+		this.tileDetails = tileDetails;
 	}
 
 }

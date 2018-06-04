@@ -3,8 +3,6 @@ package viewIMPL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import factory.Factory;
 import view.IBuilding;
 import view.IDisplayable;
 import view.IFloor;
@@ -83,12 +81,6 @@ public class Building extends Displayable implements IBuilding {
 		return this.listOfFloors.iterator();
 	}
 
-	/*
-	private void initTiles(Integer horizontalSize, Integer verticalSize, Integer totalTiles) {
-		Factory.getInstance().initTiles(listOfTiles, horizontalSize, verticalSize, totalTiles);
-	}
-	*/
-	
 	@Override
 	public void setTiles(ITile[][] tiles) {
 		for(int i = 0; i < 21; i++) {
@@ -96,5 +88,10 @@ public class Building extends Displayable implements IBuilding {
 				this.listOfTiles[i][j] = tiles[i][j];
 			}
 		}
+	}
+
+	@Override
+	public Iterator<ITile> getTiles() {
+		return null;
 	}
 }
