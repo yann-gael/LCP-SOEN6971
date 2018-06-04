@@ -15,7 +15,7 @@ public class ImplObserver implements IObserver {
 		{
 			for(int j = 0; j < 21; j++)
 			{
-				toShow[i][j] = "";
+				toShow[i][j] = "--";
 			}
 		}
 	}
@@ -38,7 +38,7 @@ public class ImplObserver implements IObserver {
 				", HEIGHT: " + ht.toString() + ", Width : " + wd.toString() + " --- DISPLAY : " + disp.getDisplay());
 		for(int i = 0; i < ht; i++) {
 			for(int j = 0; j < wd; j++) {
-				toShow[startY - i][j + startX] += disp.getDisplay().charAt(0);
+				toShow[startY - i][j + startX] += disp.getDisplay();
 			}
 		}
 		 
