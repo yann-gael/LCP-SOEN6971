@@ -7,10 +7,9 @@ import view.IDisplayContent;
 import view.IDisplayable;
 import view.IEvent;
 import view.IObjectOnTile;
-import view.IObservable;
 import view.IObserver;
 
-public class Displayable implements IDisplayable, IObservable {
+public class Displayable implements IDisplayable {
 
 	private IObjectOnTile tileDetails;
 	private IDisplayContent displayDetails;
@@ -59,5 +58,11 @@ public class Displayable implements IDisplayable, IObservable {
 	@Override
 	public Iterator<IObserver> getObserver() {
 		return this.observers.iterator();
+	}
+	
+	@Override
+	public void checkAddition() {
+		Event addedToTile = new Event("ADDED_TO_TILE");
+		this.notifyObservers(addedToTile);
 	}
 }

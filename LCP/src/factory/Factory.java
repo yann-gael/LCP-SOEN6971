@@ -1,6 +1,5 @@
 package factory;
 
-import view.IBuilding;
 import view.IDisplayContent;
 import view.IDisplayable;
 import view.IFloor;

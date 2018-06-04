@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import view.IDisplayable;
-import view.IFurniture;
 import view.IRoom;
 
 public class Room extends Displayable implements IRoom {
@@ -19,12 +18,12 @@ public class Room extends Displayable implements IRoom {
 	}
 
 	@Override
-	public void addFurniture(IFurniture furniture) {
+	public void addFurniture(IDisplayable furniture) {
 		this.listOfFurniture.add(furniture);
 	}
 
 	@Override
-	public void removeFurniture(IFurniture furniture) {
+	public void removeFurniture(IDisplayable furniture) {
 		this.listOfFurniture.remove(furniture);
 	}
 

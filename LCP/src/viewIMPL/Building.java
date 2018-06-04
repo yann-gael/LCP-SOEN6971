@@ -5,9 +5,6 @@ import java.util.Iterator;
 import java.util.List;
 import view.IBuilding;
 import view.IDisplayable;
-import view.IFloor;
-import view.IPerson;
-import view.IPet;
 import view.ITile;
 
 public class Building extends Displayable implements IBuilding {
@@ -28,12 +25,12 @@ public class Building extends Displayable implements IBuilding {
 	}
 	
 	@Override
-	public void addOccupant(IPerson occupant) {
+	public void addOccupant(IDisplayable occupant) {
 		this.listOfOccupants.add(occupant);
 	}
 
 	@Override
-	public void removeOccupant(IPerson occupant) {
+	public void removeOccupant(IDisplayable occupant) {
 		this.listOfOccupants.remove(occupant);
 	}
 
@@ -43,12 +40,12 @@ public class Building extends Displayable implements IBuilding {
 	}
 
 	@Override
-	public void addPet(IPet pet) {
+	public void addPet(IDisplayable pet) {
 		this.listOfPets.add(pet);
 	}
 
 	@Override
-	public void removePet(IPet pet) {
+	public void removePet(IDisplayable pet) {
 		this.listOfPets.remove(pet);
 	}
 
@@ -63,13 +60,13 @@ public class Building extends Displayable implements IBuilding {
 	}
 
 	@Override
-	public void addFloor(IFloor floor) {
+	public void addFloor(IDisplayable floor) {
 		this.listOfFloors.add(floor);
 		numOfFloors += 1;
 	}
 
 	@Override
-	public void removeFloor(IFloor floor) {
+	public void removeFloor(IDisplayable floor) {
 		this.listOfFloors.remove(floor);
 	}
 
@@ -79,7 +76,7 @@ public class Building extends Displayable implements IBuilding {
 	}
 
 	@Override
-	public void setTiles(ITile[][] tiles) {
+	public void initTiles(ITile[][] tiles) {
 		for(int i = 0; i < 21; i++) {
 			for(int j = 0; j < 21; j++) {
 				this.listOfTiles[i][j] = tiles[i][j];

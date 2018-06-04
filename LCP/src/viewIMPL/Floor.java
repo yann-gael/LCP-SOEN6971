@@ -2,11 +2,8 @@ package viewIMPL;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-
 import view.IDisplayable;
 import view.IFloor;
-import view.IRoom;
 
 public class Floor extends Displayable implements IFloor {
 
@@ -29,17 +26,17 @@ public class Floor extends Displayable implements IFloor {
 	}
 
 	@Override
-	public void addRoom(IRoom room) {
+	public void addRoom(IDisplayable room) {
 		this.listOfRooms.add(room);
 	}
 
 	@Override
-	public void removeRoom(IRoom room) {
+	public void removeRoom(IDisplayable room) {
 		this.listOfRooms.remove(room);
 	}
 
 	@Override
-	public Iterator<IDisplayable> getRoom() {
+	public Iterator<IDisplayable> getRooms() {
 		return this.listOfRooms.iterator();
 	}
 }

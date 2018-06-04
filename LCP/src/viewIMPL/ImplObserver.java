@@ -1,51 +1,56 @@
 package viewIMPL;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
+import view.IDisplayContent;
 import view.IDisplayable;
 import view.IEvent;
+import view.IObjectOnTile;
 import view.IObserver;
 import view.ITile;
 
 public class ImplObserver implements IObserver {
-	String toShow[][] = new String[100][100];
+	String toShow[][] = new String[21][21];
 
 	public ImplObserver() {
-		for(int i = 0; i < 100; i++)
+		for(int i = 0; i < 21; i++)
 		{
-			for(int j = 0; j < 100; j++)
+			for(int j = 0; j < 21; j++)
 			{
-				toShow[i][j] = "NA";
+				toShow[i][j] = "";
 			}
 		}
 	}
 	
 	@Override
 	public void update(ITile observable) {
-		Integer x = observable.getTileX();
-		Integer y = observable.getTileY();
-		ArrayList<IDisplayable> listOfObjects = observable.getObjectsOnTiles();
 		
-		Iterator<IDisplayable> itr = listOfObjects.iterator();
-		toShow[x][y] = "";
-		while(itr.hasNext()) {
-			toShow[x][y] += "," + itr.next().getDisplay();
-		}
-		 
-		System.out.println("*********************************************");
-		for(int i = 0; i < 100; i++)
-		{
-			for(int j = 0; j < 100; j++)
-			{
-				System.out.printf("%-15s[%s]\n", "", toShow[i][j]);
-			}
-		}
-		System.out.println("*********************************************");
 	}
 
 	@Override
 	public void update(IDisplayable observable, IEvent event) {
+		IObjectOnTile tileDet = observable.getTileDetails();
+		IDisplayContent disp = observable.getDisplay();
+		
+		Integer startX = tileDet.getX();
+		Integer startY = tileDet.getY();
+		Integer ht = tileDet.getHeight();
+		Integer wd = tileDet.getWidth();
+		
+		for(int i = startY; i < ht; i++) {
+			for(int j = startX; j < wd; j++) {
+				toShow[i][j] += disp.getDisplay();
+			}
+		}
+		 
+		System.out.println("*********************************************");
+		for(int i = 0; i < 21; i++)
+		{
+			for(int j = 0; j < 21; j++)
+			{
+				System.out.print(toShow[i][j] + ", ");
+			}
+			System.out.println();
+		}
+		System.out.println("*********************************************");
 		return;
 	}
 	

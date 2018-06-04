@@ -1,10 +1,8 @@
 package tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Iterator;
-
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.Test;
 
 import factory.Factory;
@@ -13,6 +11,7 @@ import view.IDisplayContent;
 import view.IDisplayable;
 import view.IFloor;
 import view.IObjectOnTile;
+import view.IObserver;
 import view.IRoom;
 import view.ITile;
 import viewIMPL.DisplayContent;
@@ -30,9 +29,11 @@ class CreationalTests {
 	/* Floor = 3, Rest room = 4  = Total tiles = 7 in 1 floor = 21 in 3 floors*/
 	
 	IDisplayable building;
+	IObserver observer;
 
 	public CreationalTests() {
 		this.building = null;
+		this.observer = new ImplObserver();
 	}
 	
 	@Test
@@ -48,6 +49,7 @@ class CreationalTests {
 	void testTiles() {
 		testBuilding();
 		ITile tiles[][] = Factory.getInstance().getTiles(horizontalSize, verticalSize, tileMatrixSize);
+		/*
 		for(int i = 0; i < tileMatrixSize; i++) {
 			for(int j = 0; j < tileMatrixSize; j++) {
 				System.out.print(
@@ -58,7 +60,8 @@ class CreationalTests {
 			}
 			System.out.println("");
 		}
-		((IBuilding)this.building).setTiles(tiles);
+		*/
+		((IBuilding)this.building).initTiles(tiles);
 	}
 	
 	@Test
@@ -69,15 +72,21 @@ class CreationalTests {
 		
 		IObjectOnTile objTileDetails = new ObjectOnTile(6, 0, 3, 21);
 		Integer floorNumber = 1;
-		IFloor floorOne = Factory.getInstance().getFloor(floorNumber, floorDisplay, objTileDetails);
+		IDisplayable floorOne = Factory.getInstance().getFloor(floorNumber, floorDisplay, objTileDetails);
+		floorOne.addObserver(this.observer);
+		floorOne.checkAddition();
 		
 		IObjectOnTile objTileDetails2 = new ObjectOnTile(13, 0, 3, 21);
 		Integer floorNumber2 = 2;
-		IFloor floorTwo = Factory.getInstance().getFloor(floorNumber2, floorDisplay, objTileDetails2);
+		IDisplayable floorTwo = Factory.getInstance().getFloor(floorNumber2, floorDisplay, objTileDetails2);
+		floorTwo.addObserver(this.observer);
+		floorTwo.checkAddition();
 		
 		IObjectOnTile objTileDetails3 = new ObjectOnTile(20, 0, 3, 21);
 		Integer floorNumber3 = 3;
-		IFloor floorThree = Factory.getInstance().getFloor(floorNumber3, floorDisplay, objTileDetails3);
+		IDisplayable floorThree = Factory.getInstance().getFloor(floorNumber3, floorDisplay, objTileDetails3);
+		floorThree.addObserver(this.observer);
+		floorThree.checkAddition();
 		
 		((IBuilding)this.building).addFloor(floorOne);
 		((IBuilding)this.building).addFloor(floorTwo);
@@ -91,22 +100,29 @@ class CreationalTests {
 		roomDisplay.setDisplay("Room");
 		
 		IObjectOnTile objTileDetails1 = new ObjectOnTile(3, 0, 4, 21);
-		IRoom room1 = Factory.getInstance().getRoom(roomDisplay, objTileDetails1);
+		IDisplayable room1 = Factory.getInstance().getRoom(roomDisplay, objTileDetails1);
+		room1.addObserver(this.observer);
 		
 		IObjectOnTile objTileDetails2 = new ObjectOnTile(10, 0, 4, 9);
-		IRoom room2 = Factory.getInstance().getRoom(roomDisplay, objTileDetails2);
+		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay, objTileDetails2);
+		room2.addObserver(this.observer);
 		
 		IObjectOnTile objTileDetails3 = new ObjectOnTile(10, 9, 4, 7);
-		IRoom room3 = Factory.getInstance().getRoom(roomDisplay, objTileDetails3);
+		IDisplayable room3 = Factory.getInstance().getRoom(roomDisplay, objTileDetails3);
+		room3.addObserver(this.observer);
 		
 		IObjectOnTile objTileDetails4 = new ObjectOnTile(10, 16, 4, 5);
-		IRoom room4 = Factory.getInstance().getRoom(roomDisplay, objTileDetails4);
+		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay, objTileDetails4);
+		room4.addObserver(this.observer);
 		
 		IObjectOnTile objTileDetails5 = new ObjectOnTile(17, 0, 4, 12);
-		IRoom room5 = Factory.getInstance().getRoom(roomDisplay, objTileDetails5);
+		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay, objTileDetails5);
+		room5.addObserver(this.observer);
 		
 		IObjectOnTile objTileDetails6 = new ObjectOnTile(17, 12, 4, 9);
-		IRoom room6 = Factory.getInstance().getRoom(roomDisplay, objTileDetails6);
+		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay, objTileDetails6);
+		room6.addObserver(this.observer);
+		room6.checkAddition();
 		
 		Iterator<IDisplayable> itrFloors = ((IBuilding)this.building).getFloors();
 		int ctr = 0;
@@ -125,6 +141,108 @@ class CreationalTests {
 				tmpFloor.addRoom(room6);
 			}
 			ctr += 1;
+		}
+	}
+	
+	@Test
+	public void testFurniture() {
+		testRooms();
+
+		IDisplayContent stoveDisp = new DisplayContent();
+		stoveDisp.setDisplay("Stove");
+		IObjectOnTile stoveTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable stove = Factory.getInstance().getNonMoveableFurniture(stoveDisp, stoveTileDetails);
+		stove.addObserver(this.observer);
+		
+		IDisplayContent fridgeDisp = new DisplayContent();
+		fridgeDisp.setDisplay("Fridge");
+		IObjectOnTile fridgeTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
+		fridge.addObserver(this.observer);
+		
+		IDisplayContent cupboardDisp = new DisplayContent();
+		cupboardDisp.setDisplay("CupBoard");
+		IObjectOnTile cupboardTileDetails1 = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable cupBoard1 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails1);
+		cupBoard1.addObserver(this.observer);
+		IObjectOnTile cupboardTileDetails2 = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable cupBoard2 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails2);
+		cupBoard2.addObserver(this.observer);
+		IObjectOnTile cupboardTileDetails3 = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable cupBoard3 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails3);
+		cupBoard3.addObserver(this.observer);
+		IObjectOnTile cupboardTileDetails4 = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable cupBoard4 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails4);
+		cupBoard4.addObserver(this.observer);
+		
+		IDisplayContent windowDisp = new DisplayContent();
+		windowDisp.setDisplay("Window");
+		IObjectOnTile windowTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable kitchenWindow = Factory.getInstance().getNonMoveableFurniture(windowDisp, windowTileDetails);
+		kitchenWindow.addObserver(this.observer);
+		
+		IDisplayContent tableDisp = new DisplayContent();
+		tableDisp.setDisplay("Table");
+		IObjectOnTile tableTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
+		kitchenTable.addObserver(this.observer);
+		
+		IDisplayContent waterDisp = new DisplayContent();
+		waterDisp.setDisplay("Water");
+		IObjectOnTile waterTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable water = Factory.getInstance().getNonMoveableFurniture(waterDisp, waterTileDetails);
+		water.addObserver(this.observer);
+		
+		IDisplayContent stairDiagonalDisp = new DisplayContent();
+		stairDiagonalDisp.setDisplay("StairDiag");
+		IObjectOnTile stairDiagTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable stairDiag = Factory.getInstance().getNonMoveableFurniture(stairDiagonalDisp, stairDiagTileDetails);
+		stairDiag.addObserver(this.observer);
+		
+		IDisplayContent stairDownDisp = new DisplayContent();
+		stairDownDisp.setDisplay("StairDown");
+		IObjectOnTile stairDownTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayable stairDown = Factory.getInstance().getNonMoveableFurniture(stairDownDisp, stairDownTileDetails);
+		stairDown.addObserver(this.observer);
+		
+		Iterator<IDisplayable> itr = ((IBuilding)this.building).getFloors();
+		itr.next();
+		itr.next();
+		IFloor floor3 = (IFloor)itr.next();
+		Iterator<IDisplayable> itrRoomsTF = floor3.getRooms();
+		IRoom roomF3R1 = (IRoom) itrRoomsTF.next();
+		roomF3R1.addFurniture(stove);
+		roomF3R1.addFurniture(fridge);
+		roomF3R1.addFurniture(cupBoard1);
+		roomF3R1.addFurniture(cupBoard2);
+		roomF3R1.addFurniture(cupBoard3);
+		roomF3R1.addFurniture(cupBoard4);
+		roomF3R1.addFurniture(kitchenWindow);
+		roomF3R1.addFurniture(kitchenTable);
+		roomF3R1.addFurniture(water);
+		roomF3R1.addFurniture(stairDiag);
+		roomF3R1.addFurniture(stairDown);
+	}
+	
+	@Test
+	void testCheckAddition() {
+		testFurniture();
+		Iterator<IDisplayable> floors = ((IBuilding)this.building).getFloors();
+		while(floors.hasNext()) {
+			IDisplayable floor = floors.next();
+			floor.checkAddition();
+			
+			Iterator<IDisplayable> rooms = ((IFloor) floor).getRooms();
+			while(rooms.hasNext()) {
+				IDisplayable room = rooms.next();
+				room.checkAddition();
+				
+				Iterator<IDisplayable> furns = ((IRoom) room).getFurniture();
+				while(furns.hasNext()) {
+					IDisplayable furn = furns.next();
+					furn.checkAddition();
+				}
+			}
 		}
 	}
 }
