@@ -1,9 +1,11 @@
 package factory;
 
 import view.IBuilding;
+import view.IDisplayContent;
 import view.IDisplayable;
 import view.IFloor;
 import view.IFurniture;
+import view.IObjectOnTile;
 import view.IPerson;
 import view.IPet;
 import view.IRoom;
@@ -14,12 +16,10 @@ import viewIMPL.LocationPoints;
 import viewIMPL.Tile;
 import viewIMPL.MoveableFurniture;
 import viewIMPL.NonMoveableFurniture;
-import viewIMPL.ObjectOnTile;
 import viewIMPL.Person;
 import viewIMPL.Pet;
 import viewIMPL.Room;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class Factory {
 	
@@ -31,26 +31,69 @@ public class Factory {
 		return FactoryUniqueInstanceHolder.THE_UNIQUE_FACTORY;
 	}
 	
-	public IDisplayable getBuilding(Integer numFloors) {
-
+	public IDisplayable getBuilding(IDisplayContent buildingDisplay) {
 		Building building = new Building();
-		//building.setLocation(new Tile());
-		/*
-		building.addOccupant(this.getPerson());
-		building.addPet(this.getPet());
-		
-		for(Integer i = 0; i < numFloors; i++)
-		{
-			IFloor tmpFloor = this.getFloor(i);
-			tmpFloor.setDisplay(i.toString() + "F");
-			building.addFloor(tmpFloor);
-		}
-		*/
-		building.setDisplay("Building");
+		building.setDisplay(buildingDisplay);
 		return building;
-		
 	}
 
+	public IFloor getFloor(Integer floorNum, IDisplayContent floorDisplay, IObjectOnTile objTileDetails) {
+		IFloor floor = new Floor();
+		floor.setFloorNum(floorNum);
+		floor.setDisplay(floorDisplay);
+		floor.setTiles(objTileDetails);
+		return floor;
+	}
+	
+	public IPerson getPerson(IRoom room, IDisplayContent personDisplay, IObjectOnTile objTileDetails) {
+		IPerson person = new Person();
+		person.setDisplay(personDisplay);
+		person.setTiles(objTileDetails);
+		return person;
+	}
+
+	public IPet getPet(IDisplayContent petDisplay, IObjectOnTile objTileDetails) {
+		IPet pet = new Pet();
+		pet.setDisplay(petDisplay);
+		pet.setTiles(objTileDetails);
+		return pet;
+	}
+
+	public IRoom getRoom(IDisplayContent roomDisplay, IObjectOnTile objTileDetails) {
+		IRoom room = new Room();
+		room.setDisplay(roomDisplay);
+		room.setTiles(objTileDetails);
+		return room;
+	}
+
+	public IFurniture getMoveableFurniture(IDisplayContent furnDisplay, IObjectOnTile objTileDetails) {
+		IFurniture furniture = new MoveableFurniture();
+		furniture.setDisplay(furnDisplay);
+		furniture.setTiles(objTileDetails);
+		return furniture;
+	}
+
+	public IFurniture getNonMoveableFurniture(IDisplayContent furnDisplay, IObjectOnTile objTileDetails) {
+		IFurniture furniture = new NonMoveableFurniture();
+		furniture.setDisplay(furnDisplay);
+		furniture.setTiles(objTileDetails);
+		return furniture;
+	}
+	
+	
+	/* All Functions for tiles */
+	public void initTiles(ArrayList<ITile> tiles, Integer horizontalSize, 
+			Integer verticalSize, Integer totalTiles) {
+		while (tiles.size() < (totalTiles * totalTiles) - 1) {
+			addTile(tiles, horizontalSize, verticalSize, totalTiles);
+			try {
+				Thread.sleep(10);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	public ITile[][] getTiles(Integer horizontalSize, Integer verticalSize, Integer totalTiles) {
 		ITile[][] tiles = null;
 		if(checkTileComposition(horizontalSize, verticalSize, totalTiles) == true) {
@@ -66,65 +109,6 @@ public class Factory {
 			}
 		}
 		return tiles;
-	}
-	
-	public IFloor getFloor(Integer floorNum, String floorDisplay, 
-			IBuilding building, ObjectOnTile objTileDetails) {
-		IFloor floor = new Floor();
-		floor.setFloorNum(floorNum);
-		floor.setDisplay(floorDisplay);
-		floor.setTiles(objTileDetails);
-		building.addFloor(floor);
-		return floor;
-	}
-	
-	public IPerson getPerson() {
-		IPerson person = new Person();
-		//person.setLocation(new Tiles(new Point(5, 6)));
-		person.setDisplay("Person");
-		return person;
-	}
-
-	public IPet getPet() {
-		IPet pet = new Pet();
-		//pet.setLocation(new Tiles(new Point(6, 7)));
-		pet.setDisplay("Pet");
-		return pet;
-	}
-
-	public IRoom getRoom() {
-		IRoom room = new Room();
-		room.addFurniture(this.getMoveableFurniture());
-		room.addFurniture(this.getNonMoveableFurniture());
-		room.setDisplay("Room");
-		return room;
-	}
-
-	public IFurniture getMoveableFurniture() {
-		IFurniture furniture = new MoveableFurniture();
-		//furniture.setLocation(new Tiles(new Point(1, 2)));
-		furniture.setDisplay("MFurniture");
-		return furniture;
-	}
-
-	public IFurniture getNonMoveableFurniture() {
-		IFurniture furniture = new NonMoveableFurniture();
-		//furniture.setLocation(new Tiles(new Point(2, 3)));
-		furniture.setDisplay("NMFurniture");
-		return furniture;
-	}
-	
-	public void initTiles(ArrayList<ITile> tiles, Integer horizontalSize, 
-			Integer verticalSize, Integer totalTiles) {
-		while (tiles.size() < (totalTiles * totalTiles) - 1) {
-			addTile(tiles, horizontalSize, verticalSize, totalTiles);
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 	}
 	
 	private void addTile(ArrayList<ITile> tiles, Integer horizontalSize, 

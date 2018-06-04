@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import view.IDisplayable;
+import view.IEvent;
 import view.ILocationPoints;
 import view.IObservable;
 import view.IObserver;
@@ -104,7 +105,7 @@ public class Tile implements ITile, IObservable {
 	}
 
 	@Override
-	public void notifyObservers() {
+	public void notifyObservers(IEvent event) {
 		Iterator<IObserver> itr = this.observers.iterator();
 		while(itr.hasNext())
 		{

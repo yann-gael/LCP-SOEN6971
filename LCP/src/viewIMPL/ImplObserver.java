@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import view.IDisplayable;
+import view.IEvent;
 import view.IObserver;
 import view.ITile;
 
@@ -41,6 +42,11 @@ public class ImplObserver implements IObserver {
 			}
 		}
 		System.out.println("*********************************************");
+	}
+
+	@Override
+	public void update(IDisplayable observable, IEvent event) {
+		return;
 	}
 	
 }

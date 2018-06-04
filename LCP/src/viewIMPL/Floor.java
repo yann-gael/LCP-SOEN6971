@@ -1,5 +1,6 @@
 package viewIMPL;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,16 +10,22 @@ import view.IRoom;
 
 public class Floor extends Displayable implements IFloor {
 
-	private List<IDisplayable> listOfRooms;
+	private ArrayList<IDisplayable> listOfRooms;
+	private Integer floorNumber;
+	
+	public Floor() {
+		this.listOfRooms = new ArrayList<IDisplayable>();
+		floorNumber = null;
+	}
 	
 	@Override
 	public void setFloorNum(Integer floorNum) {
-		
+		floorNumber = floorNum;
 	}
 
 	@Override
 	public Integer getFloorNum() {
-		return null;
+		return floorNumber;
 	}
 
 	@Override

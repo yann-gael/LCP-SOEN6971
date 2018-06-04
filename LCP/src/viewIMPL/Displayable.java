@@ -1,21 +1,33 @@
 package viewIMPL;
 
-import view.IDisplayable;
-import view.IObjectOnTile;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class Displayable implements IDisplayable {
+import view.IDisplayContent;
+import view.IDisplayable;
+import view.IEvent;
+import view.IObjectOnTile;
+import view.IObservable;
+import view.IObserver;
+
+public class Displayable implements IDisplayable, IObservable {
 
 	private IObjectOnTile tileDetails;
-	private String typeOfDisplay;
+	private IDisplayContent displayDetails;
+	private ArrayList<IObserver> observers;
 
-	@Override
-	public String getDisplay() {
-		return this.typeOfDisplay;		
+	public Displayable() {
+		this.observers = new ArrayList<IObserver>();
 	}
 	
 	@Override
-	public void setDisplay(String typeOfDisplay) {
-		this.typeOfDisplay = typeOfDisplay;
+	public IDisplayContent getDisplay() {
+		return this.displayDetails;		
+	}
+	
+	@Override
+	public void setDisplay(IDisplayContent displayDetails) {
+		this.displayDetails = displayDetails;
 	}
 
 	@Override
@@ -28,4 +40,24 @@ public class Displayable implements IDisplayable {
 		this.tileDetails = tileDetails;
 	}
 
+	@Override
+	public void notifyObservers(IEvent event) {
+		Iterator<IObserver> itrObservers = this.observers.iterator();
+		while(itrObservers.hasNext()) {
+			IObserver o = itrObservers.next();
+			o.update(this, event);
+		}
+	}
+	@Override
+	public void addObserver(IObserver observer) {
+		this.observers.add(observer);
+	}
+	@Override
+	public void removeObserver(IObserver observer) {
+		this.observers.remove(observer);
+	}
+	@Override
+	public Iterator<IObserver> getObserver() {
+		return this.observers.iterator();
+	}
 }

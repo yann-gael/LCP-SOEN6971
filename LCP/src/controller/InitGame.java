@@ -1,7 +1,9 @@
 package controller;
 
 import factory.Factory;
+import view.IDisplayContent;
 import view.IDisplayable;
+import viewIMPL.DisplayContent;
 
 public class InitGame implements IInitGame {
 	private final Integer numFloors = 1;
@@ -10,7 +12,9 @@ public class InitGame implements IInitGame {
 	
 	@Override
 	public void initBuilding() {
-		this.building = Factory.getInstance().getBuilding(numFloors);
+		IDisplayContent buildingDisplay = new DisplayContent();
+		buildingDisplay.setDisplay("Building");
+		this.building = Factory.getInstance().getBuilding(buildingDisplay);
 	}
 
 	@Override

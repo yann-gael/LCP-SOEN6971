@@ -24,6 +24,7 @@ public class Building extends Displayable implements IBuilding {
 		this.listOfOccupants = new ArrayList<IDisplayable>();
 		this.listOfPets = new ArrayList<IDisplayable>();
 		this.listOfTiles = new ITile[21][21];	/* TBD */
+		this.numOfFloors = 0;
 	}
 	
 	@Override
@@ -57,11 +58,6 @@ public class Building extends Displayable implements IBuilding {
 	}
 
 	@Override
-	public void setNumFloors(Integer numFloors) {
-		this.numOfFloors = numFloors;
-	}
-
-	@Override
 	public Integer getNumFloors() {
 		return this.numOfFloors;
 	}
@@ -69,6 +65,7 @@ public class Building extends Displayable implements IBuilding {
 	@Override
 	public void addFloor(IFloor floor) {
 		this.listOfFloors.add(floor);
+		numOfFloors += 1;
 	}
 
 	@Override
