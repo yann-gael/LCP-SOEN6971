@@ -6,17 +6,17 @@ import java.util.Iterator;
 import org.junit.jupiter.api.Test;
 
 import factory.Factory;
-import view.IBuilding;
-import view.IDisplayContent;
-import view.IDisplayable;
-import view.IFloor;
-import view.IObjectOnTile;
-import view.IObserver;
-import view.IRoom;
-import view.ITile;
-import viewIMPL.DisplayContent;
-import viewIMPL.ImplObserver;
-import viewIMPL.ObjectOnTile;
+import model.IBuilding;
+import model.IDisplayContent;
+import model.IDisplayable;
+import model.IFloor;
+import model.IDisplayableDimension;
+import model.IObserver;
+import model.IRoom;
+import model.ITile;
+import modelIMPL.DisplayContent;
+import modelIMPL.ImplObserver;
+import modelIMPL.DisplayableDimension;
 
 class CreationalTests {
 	public static final Integer horizontalSize = 840;
@@ -28,8 +28,8 @@ class CreationalTests {
 	public static final Integer roomsTF = 2;
 	/* Floor = 3, Rest room = 4  = Total tiles = 7 in 1 floor = 21 in 3 floors*/
 	
-	IDisplayable building;
-	IObserver observer;
+	private IDisplayable building;
+	private IObserver observer;
 
 	public CreationalTests() {
 		this.building = null;
@@ -70,17 +70,17 @@ class CreationalTests {
 		IDisplayContent floorDisplay = new DisplayContent();
 		floorDisplay.setDisplay("Floor");
 		
-		IObjectOnTile objTileDetails = new ObjectOnTile(6, 0, 3, 21);
+		IDisplayableDimension objTileDetails = new DisplayableDimension(6, 0, 3, 21);
 		Integer floorNumber = 1;
 		IDisplayable floorOne = Factory.getInstance().getFloor(floorNumber, floorDisplay, objTileDetails);
 		floorOne.addObserver(this.observer);
 		
-		IObjectOnTile objTileDetails2 = new ObjectOnTile(13, 0, 3, 21);
+		IDisplayableDimension objTileDetails2 = new DisplayableDimension(13, 0, 3, 21);
 		Integer floorNumber2 = 2;
 		IDisplayable floorTwo = Factory.getInstance().getFloor(floorNumber2, floorDisplay, objTileDetails2);
 		floorTwo.addObserver(this.observer);
 		
-		IObjectOnTile objTileDetails3 = new ObjectOnTile(20, 0, 3, 21);
+		IDisplayableDimension objTileDetails3 = new DisplayableDimension(20, 0, 3, 21);
 		Integer floorNumber3 = 3;
 		IDisplayable floorThree = Factory.getInstance().getFloor(floorNumber3, floorDisplay, objTileDetails3);
 		floorThree.addObserver(this.observer);
@@ -96,27 +96,27 @@ class CreationalTests {
 		IDisplayContent roomDisplay = new DisplayContent();
 		roomDisplay.setDisplay("Room");
 		
-		IObjectOnTile objTileDetails1 = new ObjectOnTile(3, 0, 4, 21);
+		IDisplayableDimension objTileDetails1 = new DisplayableDimension(3, 0, 4, 21);
 		IDisplayable room1 = Factory.getInstance().getRoom(roomDisplay, objTileDetails1);
 		room1.addObserver(this.observer);
 		
-		IObjectOnTile objTileDetails2 = new ObjectOnTile(10, 0, 4, 9);
+		IDisplayableDimension objTileDetails2 = new DisplayableDimension(10, 0, 4, 9);
 		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay, objTileDetails2);
 		room2.addObserver(this.observer);
 		
-		IObjectOnTile objTileDetails3 = new ObjectOnTile(10, 9, 4, 7);
+		IDisplayableDimension objTileDetails3 = new DisplayableDimension(10, 9, 4, 7);
 		IDisplayable room3 = Factory.getInstance().getRoom(roomDisplay, objTileDetails3);
 		room3.addObserver(this.observer);
 		
-		IObjectOnTile objTileDetails4 = new ObjectOnTile(10, 16, 4, 5);
+		IDisplayableDimension objTileDetails4 = new DisplayableDimension(10, 16, 4, 5);
 		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay, objTileDetails4);
 		room4.addObserver(this.observer);
 		
-		IObjectOnTile objTileDetails5 = new ObjectOnTile(17, 0, 4, 12);
+		IDisplayableDimension objTileDetails5 = new DisplayableDimension(17, 0, 4, 12);
 		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay, objTileDetails5);
 		room5.addObserver(this.observer);
 		
-		IObjectOnTile objTileDetails6 = new ObjectOnTile(17, 12, 4, 9);
+		IDisplayableDimension objTileDetails6 = new DisplayableDimension(17, 12, 4, 9);
 		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay, objTileDetails6);
 		room6.addObserver(this.observer);
 		
@@ -146,58 +146,58 @@ class CreationalTests {
 
 		IDisplayContent stoveDisp = new DisplayContent();
 		stoveDisp.setDisplay("Stove");
-		IObjectOnTile stoveTileDetails = new ObjectOnTile(17, 0, 3, 1);
+		IDisplayableDimension stoveTileDetails = new DisplayableDimension(17, 0, 3, 1);
 		IDisplayable stove = Factory.getInstance().getNonMoveableFurniture(stoveDisp, stoveTileDetails);
 		stove.addObserver(this.observer);
 		
 		IDisplayContent fridgeDisp = new DisplayContent();
 		fridgeDisp.setDisplay("Fridge");
-		IObjectOnTile fridgeTileDetails = new ObjectOnTile(17, 1, 3, 2);
+		IDisplayableDimension fridgeTileDetails = new DisplayableDimension(17, 1, 3, 2);
 		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
 		fridge.addObserver(this.observer);
 		
 		IDisplayContent cupboardDisp = new DisplayContent();
 		cupboardDisp.setDisplay("CupBoard");
-		IObjectOnTile cupboardTileDetails1 = new ObjectOnTile(14, 1, 1, 2);
+		IDisplayableDimension cupboardTileDetails1 = new DisplayableDimension(14, 1, 1, 2);
 		IDisplayable cupBoard1 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails1);
 		cupBoard1.addObserver(this.observer);
-		IObjectOnTile cupboardTileDetails2 = new ObjectOnTile(15, 3, 2, 2);
+		IDisplayableDimension cupboardTileDetails2 = new DisplayableDimension(15, 3, 2, 2);
 		IDisplayable cupBoard2 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails2);
 		cupBoard2.addObserver(this.observer);
-		IObjectOnTile cupboardTileDetails3 = new ObjectOnTile(15, 5, 2, 2);
+		IDisplayableDimension cupboardTileDetails3 = new DisplayableDimension(15, 5, 2, 2);
 		IDisplayable cupBoard3 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails3);
 		cupBoard3.addObserver(this.observer);
-		IObjectOnTile cupboardTileDetails4 = new ObjectOnTile(17, 3, 3, 4);
+		IDisplayableDimension cupboardTileDetails4 = new DisplayableDimension(17, 3, 3, 4);
 		IDisplayable cupBoard4 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails4);
 		cupBoard4.addObserver(this.observer);
 		
 		IDisplayContent windowDisp = new DisplayContent();
 		windowDisp.setDisplay("Window");
-		IObjectOnTile windowTileDetails = new ObjectOnTile(15, 7, 2, 2);
+		IDisplayableDimension windowTileDetails = new DisplayableDimension(15, 7, 2, 2);
 		IDisplayable kitchenWindow = Factory.getInstance().getNonMoveableFurniture(windowDisp, windowTileDetails);
 		kitchenWindow.addObserver(this.observer);
 		
 		IDisplayContent tableDisp = new DisplayContent();
 		tableDisp.setDisplay("Table");
-		IObjectOnTile tableTileDetails = new ObjectOnTile(15, 7, 1, 2);
+		IDisplayableDimension tableTileDetails = new DisplayableDimension(15, 7, 1, 2);
 		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
 		kitchenTable.addObserver(this.observer);
 		
 		IDisplayContent waterDisp = new DisplayContent();
 		waterDisp.setDisplay("Water");
-		IObjectOnTile waterTileDetails = new ObjectOnTile(17, 10, 2, 1);
+		IDisplayableDimension waterTileDetails = new DisplayableDimension(17, 10, 2, 1);
 		IDisplayable water = Factory.getInstance().getNonMoveableFurniture(waterDisp, waterTileDetails);
 		water.addObserver(this.observer);
 		
 		IDisplayContent stairDiagonalDisp = new DisplayContent();
 		stairDiagonalDisp.setDisplay("StairDiag");
-		IObjectOnTile stairDiagTileDetails = new ObjectOnTile(15, 10, 2, 1);
+		IDisplayableDimension stairDiagTileDetails = new DisplayableDimension(15, 10, 2, 1);
 		IDisplayable stairDiag = Factory.getInstance().getNonMoveableFurniture(stairDiagonalDisp, stairDiagTileDetails);
 		stairDiag.addObserver(this.observer);
 		
 		IDisplayContent stairDownDisp = new DisplayContent();
 		stairDownDisp.setDisplay("StairDown");
-		IObjectOnTile stairDownTileDetails = new ObjectOnTile(17, 11, 4, 1);
+		IDisplayableDimension stairDownTileDetails = new DisplayableDimension(17, 11, 4, 1);
 		IDisplayable stairDown = Factory.getInstance().getNonMoveableFurniture(stairDownDisp, stairDownTileDetails);
 		stairDown.addObserver(this.observer);
 		

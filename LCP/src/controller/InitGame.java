@@ -1,9 +1,9 @@
 package controller;
 
 import factory.Factory;
-import view.IDisplayContent;
-import view.IDisplayable;
-import viewIMPL.DisplayContent;
+import model.IDisplayContent;
+import model.IDisplayable;
+import modelIMPL.DisplayContent;
 
 public class InitGame implements IInitGame {
 	private final Integer numFloors = 1;

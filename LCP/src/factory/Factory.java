@@ -1,24 +1,25 @@
 package factory;
 
-import view.IDisplayContent;
-import view.IDisplayable;
-import view.IFloor;
-import view.IFurniture;
-import view.IObjectOnTile;
-import view.IPerson;
-import view.IPet;
-import view.IRoom;
-import view.ITile;
-import viewIMPL.Building;
-import viewIMPL.Floor;
-import viewIMPL.LocationPoints;
-import viewIMPL.Tile;
-import viewIMPL.MoveableFurniture;
-import viewIMPL.NonMoveableFurniture;
-import viewIMPL.Person;
-import viewIMPL.Pet;
-import viewIMPL.Room;
 import java.util.ArrayList;
+
+import model.IDisplayContent;
+import model.IDisplayable;
+import model.IFloor;
+import model.IFurniture;
+import model.IDisplayableDimension;
+import model.IPerson;
+import model.IPet;
+import model.IRoom;
+import model.ITile;
+import modelIMPL.Building;
+import modelIMPL.Floor;
+import modelIMPL.LocationPoints;
+import modelIMPL.MoveableFurniture;
+import modelIMPL.NonMoveableFurniture;
+import modelIMPL.Person;
+import modelIMPL.Pet;
+import modelIMPL.Room;
+import modelIMPL.Tile;
 
 public class Factory {
 	
@@ -36,7 +37,7 @@ public class Factory {
 		return building;
 	}
 
-	public IFloor getFloor(Integer floorNum, IDisplayContent floorDisplay, IObjectOnTile objTileDetails) {
+	public IFloor getFloor(Integer floorNum, IDisplayContent floorDisplay, IDisplayableDimension objTileDetails) {
 		IFloor floor = new Floor();
 		floor.setFloorNum(floorNum);
 		floor.setDisplay(floorDisplay);
@@ -44,35 +45,35 @@ public class Factory {
 		return floor;
 	}
 	
-	public IPerson getPerson(IRoom room, IDisplayContent personDisplay, IObjectOnTile objTileDetails) {
+	public IPerson getPerson(IRoom room, IDisplayContent personDisplay, IDisplayableDimension objTileDetails) {
 		IPerson person = new Person();
 		person.setDisplay(personDisplay);
 		person.setTiles(objTileDetails);
 		return person;
 	}
 
-	public IPet getPet(IDisplayContent petDisplay, IObjectOnTile objTileDetails) {
+	public IPet getPet(IDisplayContent petDisplay, IDisplayableDimension objTileDetails) {
 		IPet pet = new Pet();
 		pet.setDisplay(petDisplay);
 		pet.setTiles(objTileDetails);
 		return pet;
 	}
 
-	public IRoom getRoom(IDisplayContent roomDisplay, IObjectOnTile objTileDetails) {
+	public IRoom getRoom(IDisplayContent roomDisplay, IDisplayableDimension objTileDetails) {
 		IRoom room = new Room();
 		room.setDisplay(roomDisplay);
 		room.setTiles(objTileDetails);
 		return room;
 	}
 
-	public IFurniture getMoveableFurniture(IDisplayContent furnDisplay, IObjectOnTile objTileDetails) {
+	public IFurniture getMoveableFurniture(IDisplayContent furnDisplay, IDisplayableDimension objTileDetails) {
 		IFurniture furniture = new MoveableFurniture();
 		furniture.setDisplay(furnDisplay);
 		furniture.setTiles(objTileDetails);
 		return furniture;
 	}
 
-	public IFurniture getNonMoveableFurniture(IDisplayContent furnDisplay, IObjectOnTile objTileDetails) {
+	public IFurniture getNonMoveableFurniture(IDisplayContent furnDisplay, IDisplayableDimension objTileDetails) {
 		IFurniture furniture = new NonMoveableFurniture();
 		furniture.setDisplay(furnDisplay);
 		furniture.setTiles(objTileDetails);
