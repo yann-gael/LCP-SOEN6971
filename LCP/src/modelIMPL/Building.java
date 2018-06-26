@@ -86,7 +86,7 @@ public class Building extends Displayable implements IBuilding {
 	}
 
 	@Override
-	public Iterator<ITile> getTiles() {
-		return null;
+	public ITile[][] getTiles() {
+		return this.listOfTiles;
 	}
 }

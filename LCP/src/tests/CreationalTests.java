@@ -18,7 +18,7 @@ import modelIMPL.DisplayContent;
 import modelIMPL.ImplObserver;
 import modelIMPL.DisplayableDimension;
 
-class CreationalTests {
+public class CreationalTests {
 	public static final Integer horizontalSize = 840;
 	public static final Integer verticalSize = 840;
 	public static final Integer tileMatrixSize = 21; /* 21 x 21 */
@@ -241,4 +241,12 @@ class CreationalTests {
 			}
 		}
 	}
+	
+	
+	public IBuilding createBuilding() {
+		testFurniture();
+		return (IBuilding) building;		
+	}
+	
+	
 }
