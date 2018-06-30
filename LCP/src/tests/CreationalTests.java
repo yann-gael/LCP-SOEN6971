@@ -1,22 +1,25 @@
 package tests;
 
+import java.awt.Color;
+
 //import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Iterator;
+
 import org.junit.jupiter.api.Test;
 
 import factory.Factory;
 import model.IBuilding;
 import model.IDisplayContent;
 import model.IDisplayable;
-import model.IFloor;
 import model.IDisplayableDimension;
+import model.IFloor;
 import model.IObserver;
 import model.IRoom;
 import model.ITile;
 import modelIMPL.DisplayContent;
-import modelIMPL.ImplObserver;
 import modelIMPL.DisplayableDimension;
+import view.ButtonGrid;
 
 public class CreationalTests {
 	public static final Integer horizontalSize = 840;
@@ -33,13 +36,15 @@ public class CreationalTests {
 
 	public CreationalTests() {
 		this.building = null;
-		this.observer = new ImplObserver();
+		this.observer = new ButtonGrid(21,21);
+		//this.observer = new ImplObserver();
 	}
 	
 	@Test
 	void testBuilding() {
 		IDisplayContent buildingDisplay = new DisplayContent();
 		buildingDisplay.setDisplay("Building");
+		buildingDisplay.setBackground(new Color(0,0,255));
 		IDisplayable building = Factory.getInstance().getBuilding(buildingDisplay);
 		this.building = building;
 		System.out.println(building.getDisplay());
@@ -69,6 +74,8 @@ public class CreationalTests {
 		testTiles();
 		IDisplayContent floorDisplay = new DisplayContent();
 		floorDisplay.setDisplay("Floor");
+		//brown
+		floorDisplay.setBackground(new Color(165,42,42));
 		
 		IDisplayableDimension objTileDetails = new DisplayableDimension(6, 0, 3, 21);
 		Integer floorNumber = 1;
@@ -95,13 +102,19 @@ public class CreationalTests {
 		testFloors();
 		IDisplayContent roomDisplay = new DisplayContent();
 		roomDisplay.setDisplay("Room");
+		//light gray
+		roomDisplay.setBackground(new Color(169,169,169));
 		
 		IDisplayableDimension objTileDetails1 = new DisplayableDimension(3, 0, 4, 21);
 		IDisplayable room1 = Factory.getInstance().getRoom(roomDisplay, objTileDetails1);
 		room1.addObserver(this.observer);
 		
+		IDisplayContent roomDisplay1 = new DisplayContent();
+		//green
+		roomDisplay.setDisplay("Room2");
+		roomDisplay.setBackground(new Color(0,255,0));
 		IDisplayableDimension objTileDetails2 = new DisplayableDimension(10, 0, 4, 9);
-		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay, objTileDetails2);
+		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails2);
 		room2.addObserver(this.observer);
 		
 		IDisplayableDimension objTileDetails3 = new DisplayableDimension(10, 9, 4, 7);
@@ -146,18 +159,23 @@ public class CreationalTests {
 
 		IDisplayContent stoveDisp = new DisplayContent();
 		stoveDisp.setDisplay("Stove");
+		stoveDisp.setBackground(new Color(211,211,211));
+		
 		IDisplayableDimension stoveTileDetails = new DisplayableDimension(17, 0, 3, 1);
 		IDisplayable stove = Factory.getInstance().getNonMoveableFurniture(stoveDisp, stoveTileDetails);
 		stove.addObserver(this.observer);
 		
 		IDisplayContent fridgeDisp = new DisplayContent();
 		fridgeDisp.setDisplay("Fridge");
+		fridgeDisp.setBackground(new Color(255,250,250));
+		
 		IDisplayableDimension fridgeTileDetails = new DisplayableDimension(17, 1, 3, 2);
 		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
 		fridge.addObserver(this.observer);
 		
 		IDisplayContent cupboardDisp = new DisplayContent();
 		cupboardDisp.setDisplay("CupBoard");
+		cupboardDisp.setBackground(new Color(210,105,30));
 		IDisplayableDimension cupboardTileDetails1 = new DisplayableDimension(14, 1, 1, 2);
 		IDisplayable cupBoard1 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails1);
 		cupBoard1.addObserver(this.observer);
@@ -173,30 +191,35 @@ public class CreationalTests {
 		
 		IDisplayContent windowDisp = new DisplayContent();
 		windowDisp.setDisplay("Window");
+		windowDisp.setBackground(new Color(135,206,235));
 		IDisplayableDimension windowTileDetails = new DisplayableDimension(15, 7, 2, 2);
 		IDisplayable kitchenWindow = Factory.getInstance().getNonMoveableFurniture(windowDisp, windowTileDetails);
 		kitchenWindow.addObserver(this.observer);
 		
 		IDisplayContent tableDisp = new DisplayContent();
 		tableDisp.setDisplay("Table");
+		tableDisp.setBackground(new Color(128,0,0));
 		IDisplayableDimension tableTileDetails = new DisplayableDimension(15, 7, 1, 2);
 		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
 		kitchenTable.addObserver(this.observer);
 		
 		IDisplayContent waterDisp = new DisplayContent();
 		waterDisp.setDisplay("Water");
+		waterDisp.setBackground(new Color(240,248,255));
 		IDisplayableDimension waterTileDetails = new DisplayableDimension(17, 10, 2, 1);
 		IDisplayable water = Factory.getInstance().getNonMoveableFurniture(waterDisp, waterTileDetails);
 		water.addObserver(this.observer);
 		
 		IDisplayContent stairDiagonalDisp = new DisplayContent();
 		stairDiagonalDisp.setDisplay("StairDiag");
+		stairDiagonalDisp.setBackground(new Color(205,133,63));
 		IDisplayableDimension stairDiagTileDetails = new DisplayableDimension(15, 10, 2, 1);
 		IDisplayable stairDiag = Factory.getInstance().getNonMoveableFurniture(stairDiagonalDisp, stairDiagTileDetails);
 		stairDiag.addObserver(this.observer);
 		
 		IDisplayContent stairDownDisp = new DisplayContent();
 		stairDownDisp.setDisplay("StairDown");
+		stairDownDisp.setBackground(new Color(205,133,63));
 		IDisplayableDimension stairDownTileDetails = new DisplayableDimension(17, 11, 4, 1);
 		IDisplayable stairDown = Factory.getInstance().getNonMoveableFurniture(stairDownDisp, stairDownTileDetails);
 		stairDown.addObserver(this.observer);
@@ -220,6 +243,12 @@ public class CreationalTests {
 		roomF3R1.addFurniture(stairDown);
 	}
 	
+	//yet to figure out where to write this to create a template
+	public IDisplayable createBuilding() {
+		testFurniture();
+		return this.building;
+	}
+	
 	@Test
 	void testCheckAddition() {
 		testFurniture();
@@ -240,12 +269,6 @@ public class CreationalTests {
 				}
 			}
 		}
-	}
-	
-	
-	public IBuilding createBuilding() {
-		testFurniture();
-		return (IBuilding) building;		
 	}
 	
 	
