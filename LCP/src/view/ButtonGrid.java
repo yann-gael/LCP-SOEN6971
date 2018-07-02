@@ -23,7 +23,7 @@ import tests.CreationalTests;
 
 public class ButtonGrid implements IObserver {
 
-	JFrame frame = new JFrame(); // creates frame
+	static JFrame frame = new JFrame(); // creates frame
 	JPanel[][] grid; // names the grid of buttons
 	int height, width;
 	static IDisplayable building;
@@ -46,6 +46,10 @@ public class ButtonGrid implements IObserver {
 		ct = new CreationalTests();
 		building = ct.createBuilding();
 		checkForUpdate();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setPreferredSize(new Dimension(840, 840));
+		frame.pack(); // sets appropriate size for frame
+		frame.setVisible(true); // makes frame visible
 	}
 
 	private static void checkForUpdate() {
@@ -87,10 +91,7 @@ public class ButtonGrid implements IObserver {
 				//frame.add(grid[startY - i][j + startX]); // adds panel to frame
 			}
 		}
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(840, 840));
-		frame.pack(); // sets appropriate size for frame
-		frame.setVisible(true); // makes frame visible
+		
 	}
 
 	@Override

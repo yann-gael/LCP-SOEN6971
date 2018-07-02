@@ -134,16 +134,29 @@ public class CreationalTests {
 		IDisplayable room3 = Factory.getInstance().getRoom(roomDisplay3, objTileDetails3);
 		room3.addObserver(this.observer);
 		
+		IDisplayContent roomDisplay4 = new DisplayContent();
+		roomDisplay4.setDisplay("Room4");
+		//turquoise blue
+		roomDisplay4.setBackground(new Color(51, 204, 204));
 		IDisplayableDimension objTileDetails4 = new DisplayableDimension(10, 16, 4, 5);
-		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails4);
+		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay4, objTileDetails4);
 		room4.addObserver(this.observer);
 		
+		
+		IDisplayContent roomDisplay5 = new DisplayContent();
+		roomDisplay5.setDisplay("Room5");
+		//light yellow
+		roomDisplay5.setBackground(new Color(255, 255, 153));
 		IDisplayableDimension objTileDetails5 = new DisplayableDimension(17, 0, 4, 12);
-		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails5);
+		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay5, objTileDetails5);
 		room5.addObserver(this.observer);
 		
+		IDisplayContent roomDisplay6 = new DisplayContent();
+		roomDisplay6.setDisplay("Room6");
+		//purple
+		roomDisplay6.setBackground(new Color(153, 102, 255));
 		IDisplayableDimension objTileDetails6 = new DisplayableDimension(17, 12, 4, 9);
-		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails6);
+		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay6, objTileDetails6);
 		room6.addObserver(this.observer);
 		
 		Iterator<IDisplayable> itrFloors = ((IBuilding)this.building).getFloors();
@@ -156,9 +169,9 @@ public class CreationalTests {
 			else if(ctr == 1) {
 				tmpFloor.addRoom(room2);
 				tmpFloor.addRoom(room3);
+				tmpFloor.addRoom(room4);
 			}
 			else if(ctr == 2) {
-				tmpFloor.addRoom(room4);
 				tmpFloor.addRoom(room5);
 				tmpFloor.addRoom(room6);
 			}
@@ -172,7 +185,8 @@ public class CreationalTests {
 
 		IDisplayContent stoveDisp = new DisplayContent();
 		stoveDisp.setDisplay("Stove");
-		stoveDisp.setBackground(new Color(211,211,211));
+		//shade of brown and green
+		stoveDisp.setBackground(new Color(153, 153, 102));
 		
 		IDisplayableDimension stoveTileDetails = new DisplayableDimension(17, 0, 3, 1);
 		IDisplayable stove = Factory.getInstance().getNonMoveableFurniture(stoveDisp, stoveTileDetails);
@@ -180,7 +194,8 @@ public class CreationalTests {
 		
 		IDisplayContent fridgeDisp = new DisplayContent();
 		fridgeDisp.setDisplay("Fridge");
-		fridgeDisp.setBackground(new Color(255,250,250));
+		// shade of white and blue
+		fridgeDisp.setBackground(new Color(153, 204, 255));
 		
 		IDisplayableDimension fridgeTileDetails = new DisplayableDimension(17, 1, 3, 2);
 		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
@@ -188,6 +203,7 @@ public class CreationalTests {
 		
 		IDisplayContent cupboardDisp = new DisplayContent();
 		cupboardDisp.setDisplay("CupBoard");
+		//Chocolate
 		cupboardDisp.setBackground(new Color(210,105,30));
 		IDisplayableDimension cupboardTileDetails1 = new DisplayableDimension(14, 1, 1, 2);
 		IDisplayable cupBoard1 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails1);
@@ -204,6 +220,7 @@ public class CreationalTests {
 		
 		IDisplayContent windowDisp = new DisplayContent();
 		windowDisp.setDisplay("Window");
+		//skyblue
 		windowDisp.setBackground(new Color(135,206,235));
 		IDisplayableDimension windowTileDetails = new DisplayableDimension(15, 7, 2, 2);
 		IDisplayable kitchenWindow = Factory.getInstance().getNonMoveableFurniture(windowDisp, windowTileDetails);
@@ -211,6 +228,7 @@ public class CreationalTests {
 		
 		IDisplayContent tableDisp = new DisplayContent();
 		tableDisp.setDisplay("Table");
+		//maroon
 		tableDisp.setBackground(new Color(128,0,0));
 		IDisplayableDimension tableTileDetails = new DisplayableDimension(15, 7, 1, 2);
 		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
@@ -218,6 +236,7 @@ public class CreationalTests {
 		
 		IDisplayContent waterDisp = new DisplayContent();
 		waterDisp.setDisplay("Water");
+		//AliceBlue
 		waterDisp.setBackground(new Color(240,248,255));
 		IDisplayableDimension waterTileDetails = new DisplayableDimension(17, 10, 2, 1);
 		IDisplayable water = Factory.getInstance().getNonMoveableFurniture(waterDisp, waterTileDetails);
@@ -225,6 +244,7 @@ public class CreationalTests {
 		
 		IDisplayContent stairDiagonalDisp = new DisplayContent();
 		stairDiagonalDisp.setDisplay("StairDiag");
+		//Peru
 		stairDiagonalDisp.setBackground(new Color(205,133,63));
 		IDisplayableDimension stairDiagTileDetails = new DisplayableDimension(15, 10, 2, 1);
 		IDisplayable stairDiag = Factory.getInstance().getNonMoveableFurniture(stairDiagonalDisp, stairDiagTileDetails);
@@ -232,6 +252,7 @@ public class CreationalTests {
 		
 		IDisplayContent stairDownDisp = new DisplayContent();
 		stairDownDisp.setDisplay("StairDown");
+		//Peru
 		stairDownDisp.setBackground(new Color(205,133,63));
 		IDisplayableDimension stairDownTileDetails = new DisplayableDimension(17, 11, 4, 1);
 		IDisplayable stairDown = Factory.getInstance().getNonMoveableFurniture(stairDownDisp, stairDownTileDetails);
