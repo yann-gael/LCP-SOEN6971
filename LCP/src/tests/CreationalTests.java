@@ -6,7 +6,7 @@ import java.awt.Color;
 
 import java.util.Iterator;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import factory.Factory;
 import model.IBuilding;
@@ -36,7 +36,7 @@ public class CreationalTests {
 
 	public CreationalTests() {
 		this.building = null;
-		this.observer = new ButtonGrid(21,21);
+		this.observer = new ButtonGrid();
 		//this.observer = new ImplObserver();
 	}
 	
@@ -188,7 +188,7 @@ public class CreationalTests {
 		//shade of brown and green
 		stoveDisp.setBackground(new Color(153, 153, 102));
 		
-		IDisplayableDimension stoveTileDetails = new DisplayableDimension(17, 0, 3, 1);
+	    IDisplayableDimension stoveTileDetails = new DisplayableDimension(17, 0, 1, 1);
 		IDisplayable stove = Factory.getInstance().getNonMoveableFurniture(stoveDisp, stoveTileDetails);
 		stove.addObserver(this.observer);
 		
@@ -201,28 +201,43 @@ public class CreationalTests {
 		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
 		fridge.addObserver(this.observer);
 		
-		IDisplayContent cupboardDisp = new DisplayContent();
-		cupboardDisp.setDisplay("CupBoard");
+	    IDisplayContent cupboardDisp1 = new DisplayContent(); 
+	    cupboardDisp1.setDisplay("CupBoard1"); 
 		//Chocolate
-		cupboardDisp.setBackground(new Color(210,105,30));
+		cupboardDisp1.setBackground(new Color(210,105,30));
 		IDisplayableDimension cupboardTileDetails1 = new DisplayableDimension(14, 1, 1, 2);
-		IDisplayable cupBoard1 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails1);
+		IDisplayable cupBoard1 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp1, cupboardTileDetails1);
 		cupBoard1.addObserver(this.observer);
+		
+		IDisplayContent cupboardDisp2 = new DisplayContent(); 
+	    cupboardDisp2.setDisplay("CupBoard2");
+	    /* Chocolate */
+	    cupboardDisp2.setBackground(new Color(210,105,30));
 		IDisplayableDimension cupboardTileDetails2 = new DisplayableDimension(15, 3, 2, 2);
-		IDisplayable cupBoard2 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails2);
+		IDisplayable cupBoard2 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp2, cupboardTileDetails2);
 		cupBoard2.addObserver(this.observer);
+		
+		IDisplayContent cupboardDisp3 = new DisplayContent(); 
+	    cupboardDisp3.setDisplay("CupBoard3"); 
+	    //Chocolate 
+	    cupboardDisp3.setBackground(new Color(210,105,30)); 
 		IDisplayableDimension cupboardTileDetails3 = new DisplayableDimension(15, 5, 2, 2);
-		IDisplayable cupBoard3 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails3);
+		IDisplayable cupBoard3 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp3, cupboardTileDetails3);
 		cupBoard3.addObserver(this.observer);
-		IDisplayableDimension cupboardTileDetails4 = new DisplayableDimension(17, 3, 3, 4);
-		IDisplayable cupBoard4 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp, cupboardTileDetails4);
+		
+		IDisplayContent cupboardDisp4 = new DisplayContent(); 
+	    cupboardDisp4.setDisplay("CupBoard4"); 
+	    //same as fridge 
+	    cupboardDisp4.setBackground(new Color(153, 204, 255)); 
+		IDisplayableDimension cupboardTileDetails4 = new DisplayableDimension(17, 3, 1, 4);
+		IDisplayable cupBoard4 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp4, cupboardTileDetails4);
 		cupBoard4.addObserver(this.observer);
 		
 		IDisplayContent windowDisp = new DisplayContent();
 		windowDisp.setDisplay("Window");
 		//skyblue
 		windowDisp.setBackground(new Color(135,206,235));
-		IDisplayableDimension windowTileDetails = new DisplayableDimension(15, 7, 2, 2);
+		IDisplayableDimension windowTileDetails = new DisplayableDimension(16, 7, 2, 2);
 		IDisplayable kitchenWindow = Factory.getInstance().getNonMoveableFurniture(windowDisp, windowTileDetails);
 		kitchenWindow.addObserver(this.observer);
 		
@@ -230,7 +245,7 @@ public class CreationalTests {
 		tableDisp.setDisplay("Table");
 		//maroon
 		tableDisp.setBackground(new Color(128,0,0));
-		IDisplayableDimension tableTileDetails = new DisplayableDimension(15, 7, 1, 2);
+		IDisplayableDimension tableTileDetails = new DisplayableDimension(17, 7, 1, 2);
 		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
 		kitchenTable.addObserver(this.observer);
 		

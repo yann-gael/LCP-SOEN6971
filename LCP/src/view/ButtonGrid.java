@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Iterator;
@@ -9,50 +8,72 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import javafx.scene.layout.Border;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
 import model.IBuilding;
 import model.IDisplayContent;
 import model.IDisplayable;
 import model.IDisplayableDimension;
 import model.IEvent;
 import model.IFloor;
+import model.ILCPDriver;
 import model.IObserver;
 import model.IRoom;
 import model.ITile;
+import modelIMPL.LCPDriver;
 import tests.CreationalTests;
 
 public class ButtonGrid implements IObserver {
 
-	static JFrame frame = new JFrame(); // creates frame
-	JPanel[][] grid; // names the grid of buttons
-	int height, width;
-	static IDisplayable building;
-	static CreationalTests ct;
+	private JFrame frame = new JFrame(); // creates frame
+	private JPanel[][] grid; // names the grid of buttons
+	private int height, width;
+	private IDisplayable building;
+	private CreationalTests ct;
+	
+	private ILCPDriver lcpDriver;
 
-	public ButtonGrid(int height, int width) {
-		this.height = height;
-		this.width = width;
-		frame.setLayout(new GridLayout(height, width)); // set layout
-		grid = new JPanel[height][width]; // allocate the size of grid
-		for(int i = 0; i<21;i++) {
-			for(int j = 0; j<21;j++) {
-				grid[i][j] = new JPanel();
-				frame.add(grid[i][j]);
+	public ButtonGrid() {
+		this.lcpDriver = new LCPDriver();
+		initGridDimensions();
+		initGrid();
+	}
+	
+	private void initGridDimensions() {
+		this.height = this.lcpDriver.getNumTilesVertically();
+		this.width = this.lcpDriver.getNumTilesVertically();
+	}
+	
+	private void initGrid() {
+		this.frame.setLayout(new GridLayout(height, width)); // set layout
+		this.grid = new JPanel[height][width]; // allocate the size of grid
+		
+		for(int i = 0; i<this.height;i++) {
+			for(int j = 0; j<this.width;j++) {
+				this.grid[i][j] = new JPanel();
+				this.grid[i][j].setLayout(new BoxLayout(this.grid[i][j], BoxLayout.LINE_AXIS)); 
+				this.frame.add(grid[i][j]);
 			}
 		}
 	}
 
+	public IDisplayable getBuilding() {
+		return this.lcpDriver.getBuilding();
+	}
+	
 	public static void main(String[] args) {
-		ct = new CreationalTests();
-		building = ct.createBuilding();
-		checkForUpdate();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setPreferredSize(new Dimension(840, 840));
-		frame.pack(); // sets appropriate size for frame
-		frame.setVisible(true); // makes frame visible
+		
+		ButtonGrid btg = new ButtonGrid();
+		
+		btg.building = btg.getBuilding();
+		btg.checkForUpdate();
+		btg.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		btg.frame.setPreferredSize(new Dimension(840, 840));
+		btg.frame.pack(); // sets appropriate size for frame
+		btg.frame.setVisible(true); // makes frame visible
 	}
 
-	private static void checkForUpdate() {
+	private void checkForUpdate() {
 
 		Iterator<IDisplayable> floors = ((IBuilding) building).getFloors();
 		while (floors.hasNext()) {
@@ -85,10 +106,13 @@ public class ButtonGrid implements IObserver {
 
 		for (int i = 0; i < ht; i++) {
 			for (int j = 0; j < wd; j++) {
-				//grid[startY - i][j + startX] = new JPanel(); // creates new panel
 				grid[startY - i][j + startX].setBackground(disp.getBackground());
 				grid[startY - i][j + startX].setBorder(BorderFactory.createBevelBorder(1));
-				//frame.add(grid[startY - i][j + startX]); // adds panel to frame
+				//display text name for reference 
+		        JTextField text1 = new JTextField(); 
+		        text1.setText(disp.getDisplay()); 
+		        text1.setOpaque(false);         
+		        grid[startY - i][j + startX].add(text1);
 			}
 		}
 		
@@ -96,7 +120,6 @@ public class ButtonGrid implements IObserver {
 
 	@Override
 	public void update(ITile observable) {
-		// TODO Auto-generated method stub
-
+		
 	}
 }
