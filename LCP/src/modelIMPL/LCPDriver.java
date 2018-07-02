@@ -11,12 +11,11 @@ import model.IDisplayableDimension;
 import model.IEvent;
 import model.IFloor;
 import model.ILCPDriver;
-import model.IObservable;
 import model.IObserver;
 import model.IRoom;
 import model.ITile;
 
-public class LCPDriver implements ILCPDriver, IObservable {
+public class LCPDriver implements ILCPDriver {
 	private final Integer HORIZONTAL_SIZE = 840;
 	private final Integer VERTICAL_SIZE = 840;
 	private final Integer TILE_MATRIX_SIZE = 21; /* 21 x 21 */
@@ -33,12 +32,12 @@ public class LCPDriver implements ILCPDriver, IObservable {
 
 	@Override
 	public final Integer getNumTilesHorizontally() {
-		return this.HORIZONTAL_SIZE;
+		return this.TILE_MATRIX_SIZE;
 	}
 	
 	@Override
 	public final Integer getNumTilesVertically() {
-		return this.VERTICAL_SIZE;
+		return this.TILE_MATRIX_SIZE;
 	}
 	
 	public LCPDriver() {

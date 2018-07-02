@@ -1,6 +1,6 @@
 package model;
 
-public interface ILCPDriver {
+public interface ILCPDriver extends IObservable{
 	public void initBuilding();
 	public IDisplayable getBuilding();
 	public Integer getNumTilesHorizontally();

@@ -21,20 +21,20 @@ import model.IObserver;
 import model.IRoom;
 import model.ITile;
 import modelIMPL.LCPDriver;
-import tests.CreationalTests;
 
 public class ButtonGrid implements IObserver {
 
-	private JFrame frame = new JFrame(); // creates frame
+	private JFrame frame; // creates frame
 	private JPanel[][] grid; // names the grid of buttons
 	private int height, width;
 	private IDisplayable building;
-	private CreationalTests ct;
 	
 	private ILCPDriver lcpDriver;
 
 	public ButtonGrid() {
+		this.frame = new JFrame();
 		this.lcpDriver = new LCPDriver();
+		this.lcpDriver.addObserver(this);
 		initGridDimensions();
 		initGrid();
 	}
@@ -42,16 +42,17 @@ public class ButtonGrid implements IObserver {
 	private void initGridDimensions() {
 		this.height = this.lcpDriver.getNumTilesVertically();
 		this.width = this.lcpDriver.getNumTilesVertically();
+		return;
 	}
 	
 	private void initGrid() {
 		this.frame.setLayout(new GridLayout(height, width)); // set layout
 		this.grid = new JPanel[height][width]; // allocate the size of grid
 		
-		for(int i = 0; i<this.height;i++) {
-			for(int j = 0; j<this.width;j++) {
+		for(int i = 0; i<21;i++) {
+			for(int j = 0; j<21;j++) {
 				this.grid[i][j] = new JPanel();
-				this.grid[i][j].setLayout(new BoxLayout(this.grid[i][j], BoxLayout.LINE_AXIS)); 
+				this.grid[i][j].setLayout(new BoxLayout(this.grid[i][j], BoxLayout.LINE_AXIS));
 				this.frame.add(grid[i][j]);
 			}
 		}
@@ -98,7 +99,7 @@ public class ButtonGrid implements IObserver {
 	public void update(IDisplayable observable, IEvent event) {
 		IDisplayableDimension tileDet = observable.getTileDetails();
 		IDisplayContent disp = observable.getDisplay();
-
+		
 		Integer startX = tileDet.getX();
 		Integer startY = tileDet.getY();
 		Integer ht = tileDet.getHeight();
@@ -113,6 +114,7 @@ public class ButtonGrid implements IObserver {
 		        text1.setText(disp.getDisplay()); 
 		        text1.setOpaque(false);         
 		        grid[startY - i][j + startX].add(text1);
+		        System.out.println(grid[startY - i][j + startX].getBackground());
 			}
 		}
 		
