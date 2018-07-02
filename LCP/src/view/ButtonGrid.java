@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 
 import javax.swing.BoxLayout;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+
 import model.IBuilding;
 import model.IDisplayContent;
 import model.IDisplayable;
@@ -21,6 +23,7 @@ import model.IObserver;
 import model.IRoom;
 import model.ITile;
 import modelIMPL.LCPDriver;
+import tests.CreationalTests;
 
 public class ButtonGrid implements IObserver {
 
@@ -30,10 +33,13 @@ public class ButtonGrid implements IObserver {
 	private IDisplayable building;
 	
 	private ILCPDriver lcpDriver;
+	private CreationalTests creationalTests;
 
 	public ButtonGrid() {
 		this.frame = new JFrame();
 		this.lcpDriver = new LCPDriver();
+		this.creationalTests = new CreationalTests();
+		this.creationalTests.addObserver(this);
 		this.lcpDriver.addObserver(this);
 		initGridDimensions();
 		initGrid();
@@ -52,26 +58,38 @@ public class ButtonGrid implements IObserver {
 		for(int i = 0; i<21;i++) {
 			for(int j = 0; j<21;j++) {
 				this.grid[i][j] = new JPanel();
-				this.grid[i][j].setLayout(new BoxLayout(this.grid[i][j], BoxLayout.LINE_AXIS));
+				this.grid[i][j].setLayout(new BoxLayout(this.grid[i][j], BoxLayout.PAGE_AXIS));
 				this.frame.add(grid[i][j]);
 			}
 		}
+		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.frame.setPreferredSize(new Dimension(840, 840));
+		this.frame.pack(); // sets appropriate size for frame
+		this.frame.setVisible(true); // makes frame visible
 	}
 
 	public IDisplayable getBuilding() {
 		return this.lcpDriver.getBuilding();
 	}
 	
+	private static void createAndShowGui() {
+
+		ButtonGrid btg = new ButtonGrid();
+		//btg.building = btg.getBuilding();
+		btg.building = btg.creationalTests.createBuilding();
+		btg.checkForUpdate();
+	}
+	
+	
+	
 	public static void main(String[] args) {
 		
-		ButtonGrid btg = new ButtonGrid();
+		SwingUtilities.invokeLater(new Runnable() {
+	         public void run() {
+	            createAndShowGui();
+	         }
+	      });
 		
-		btg.building = btg.getBuilding();
-		btg.checkForUpdate();
-		btg.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		btg.frame.setPreferredSize(new Dimension(840, 840));
-		btg.frame.pack(); // sets appropriate size for frame
-		btg.frame.setVisible(true); // makes frame visible
 	}
 
 	private void checkForUpdate() {
@@ -114,7 +132,6 @@ public class ButtonGrid implements IObserver {
 		        text1.setText(disp.getDisplay()); 
 		        text1.setOpaque(false);         
 		        grid[startY - i][j + startX].add(text1);
-		        System.out.println(grid[startY - i][j + startX].getBackground());
 			}
 		}
 		

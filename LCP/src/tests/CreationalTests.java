@@ -1,6 +1,7 @@
 package tests;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
 //import static org.junit.jupiter.api.Assertions.*;
 
@@ -36,8 +37,12 @@ public class CreationalTests {
 
 	public CreationalTests() {
 		this.building = null;
-		this.observer = new ButtonGrid();
+		this.observer = null;
 		//this.observer = new ImplObserver();
+	}
+	
+	public void addObserver(IObserver observer) {
+		this.observer = observer;
 	}
 	
 	@Test
