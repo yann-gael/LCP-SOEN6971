@@ -72,24 +72,33 @@ public class CreationalTests {
 	@Test
 	void testFloors() {
 		testTiles();
-		IDisplayContent floorDisplay = new DisplayContent();
-		floorDisplay.setDisplay("Floor");
+		IDisplayContent floorDisplay1 = new DisplayContent();
+		floorDisplay1.setDisplay("Floor1");
 		//brown
-		floorDisplay.setBackground(new Color(165,42,42));
+		floorDisplay1.setBackground(new Color(165,42,42));
 		
 		IDisplayableDimension objTileDetails = new DisplayableDimension(6, 0, 3, 21);
 		Integer floorNumber = 1;
-		IDisplayable floorOne = Factory.getInstance().getFloor(floorNumber, floorDisplay, objTileDetails);
+		IDisplayable floorOne = Factory.getInstance().getFloor(floorNumber, floorDisplay1, objTileDetails);
 		floorOne.addObserver(this.observer);
 		
+		
+		IDisplayContent floorDisplay2 = new DisplayContent();
+		floorDisplay2.setDisplay("Floor2");
+		//brown
+		floorDisplay2.setBackground(new Color(165,42,42));
 		IDisplayableDimension objTileDetails2 = new DisplayableDimension(13, 0, 3, 21);
 		Integer floorNumber2 = 2;
-		IDisplayable floorTwo = Factory.getInstance().getFloor(floorNumber2, floorDisplay, objTileDetails2);
+		IDisplayable floorTwo = Factory.getInstance().getFloor(floorNumber2, floorDisplay2, objTileDetails2);
 		floorTwo.addObserver(this.observer);
 		
+		IDisplayContent floorDisplay3 = new DisplayContent();
+		floorDisplay3.setDisplay("Floor3");
+		//brown
+		floorDisplay3.setBackground(new Color(165,42,42));
 		IDisplayableDimension objTileDetails3 = new DisplayableDimension(20, 0, 3, 21);
 		Integer floorNumber3 = 3;
-		IDisplayable floorThree = Factory.getInstance().getFloor(floorNumber3, floorDisplay, objTileDetails3);
+		IDisplayable floorThree = Factory.getInstance().getFloor(floorNumber3, floorDisplay3, objTileDetails3);
 		floorThree.addObserver(this.observer);
 		
 		((IBuilding)this.building).addFloor(floorOne);
@@ -100,37 +109,41 @@ public class CreationalTests {
 	@Test
 	void testRooms() {
 		testFloors();
-		IDisplayContent roomDisplay = new DisplayContent();
-		roomDisplay.setDisplay("Room");
+		IDisplayContent roomDisplay1 = new DisplayContent();
+		roomDisplay1.setDisplay("Room1");
 		//light gray
-		roomDisplay.setBackground(new Color(169,169,169));
+		roomDisplay1.setBackground(new Color(169,169,169));
 		
 		IDisplayableDimension objTileDetails1 = new DisplayableDimension(3, 0, 4, 21);
-		IDisplayable room1 = Factory.getInstance().getRoom(roomDisplay, objTileDetails1);
+		IDisplayable room1 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails1);
 		room1.addObserver(this.observer);
 		
-		IDisplayContent roomDisplay1 = new DisplayContent();
+		IDisplayContent roomDisplay2 = new DisplayContent();
 		//green
-		roomDisplay.setDisplay("Room2");
-		roomDisplay.setBackground(new Color(0,255,0));
+		roomDisplay2.setDisplay("Room2");
+		roomDisplay2.setBackground(new Color(0,255,0));
 		IDisplayableDimension objTileDetails2 = new DisplayableDimension(10, 0, 4, 9);
-		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails2);
+		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay2, objTileDetails2);
 		room2.addObserver(this.observer);
 		
+		IDisplayContent roomDisplay3 = new DisplayContent();
+		roomDisplay3.setDisplay("Room3");
+		//purple
+		roomDisplay3.setBackground(new Color(153, 102, 255));
 		IDisplayableDimension objTileDetails3 = new DisplayableDimension(10, 9, 4, 7);
-		IDisplayable room3 = Factory.getInstance().getRoom(roomDisplay, objTileDetails3);
+		IDisplayable room3 = Factory.getInstance().getRoom(roomDisplay3, objTileDetails3);
 		room3.addObserver(this.observer);
 		
 		IDisplayableDimension objTileDetails4 = new DisplayableDimension(10, 16, 4, 5);
-		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay, objTileDetails4);
+		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails4);
 		room4.addObserver(this.observer);
 		
 		IDisplayableDimension objTileDetails5 = new DisplayableDimension(17, 0, 4, 12);
-		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay, objTileDetails5);
+		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails5);
 		room5.addObserver(this.observer);
 		
 		IDisplayableDimension objTileDetails6 = new DisplayableDimension(17, 12, 4, 9);
-		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay, objTileDetails6);
+		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails6);
 		room6.addObserver(this.observer);
 		
 		Iterator<IDisplayable> itrFloors = ((IBuilding)this.building).getFloors();

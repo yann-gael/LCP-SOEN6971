@@ -1,12 +1,15 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.Iterator;
 
+import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import javafx.scene.layout.Border;
 import model.IBuilding;
 import model.IDisplayContent;
 import model.IDisplayable;
@@ -31,6 +34,12 @@ public class ButtonGrid implements IObserver {
 		this.width = width;
 		frame.setLayout(new GridLayout(height, width)); // set layout
 		grid = new JPanel[height][width]; // allocate the size of grid
+		for(int i = 0; i<21;i++) {
+			for(int j = 0; j<21;j++) {
+				grid[i][j] = new JPanel();
+				frame.add(grid[i][j]);
+			}
+		}
 	}
 
 	public static void main(String[] args) {
@@ -72,9 +81,10 @@ public class ButtonGrid implements IObserver {
 
 		for (int i = 0; i < ht; i++) {
 			for (int j = 0; j < wd; j++) {
-				grid[startY - i][j + startX] = new JPanel(); // creates new panel
+				//grid[startY - i][j + startX] = new JPanel(); // creates new panel
 				grid[startY - i][j + startX].setBackground(disp.getBackground());
-				frame.add(grid[startY - i][j + startX]); // adds panel to frame
+				grid[startY - i][j + startX].setBorder(BorderFactory.createBevelBorder(1));
+				//frame.add(grid[startY - i][j + startX]); // adds panel to frame
 			}
 		}
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
