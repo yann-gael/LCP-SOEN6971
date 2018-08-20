@@ -94,33 +94,54 @@ public class LCPDriver implements ILCPDriver {
 		this.building.addFloor(floorThree);
 	}
 
-	public void initRooms() {
-		IDisplayContent roomDisplay = new DisplayContent();
-		roomDisplay.setDisplay("Room");
-		//light gray
-		roomDisplay.setBackground(new Color(169,169,169));
-		
-		IDisplayableDimension objTileDetails1 = new DisplayableDimension(3, 0, 4, 21);
-		IDisplayable room1 = Factory.getInstance().getRoom(roomDisplay, objTileDetails1);
-		
+	private final void initRooms() {
+		////Room1
 		IDisplayContent roomDisplay1 = new DisplayContent();
+		roomDisplay1.setDisplay("Room1");
+		//light gray
+		roomDisplay1.setBackground(new Color(169,169,169));
+		IDisplayableDimension objTileDetails1 = new DisplayableDimension(3, 0, 4, 21);
+		IDisplayable room1 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails1);
+		
+		////Room2
+		IDisplayContent roomDisplay2 = new DisplayContent();
 		//green
-		roomDisplay.setDisplay("Room2");
-		roomDisplay.setBackground(new Color(0,255,0));
+		roomDisplay2.setDisplay("Room2");
+		roomDisplay2.setBackground(new Color(0,255,0));
 		IDisplayableDimension objTileDetails2 = new DisplayableDimension(10, 0, 4, 9);
-		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay1, objTileDetails2);
+		IDisplayable room2 = Factory.getInstance().getRoom(roomDisplay2, objTileDetails2);
 		
+		////Room3
+		IDisplayContent roomDisplay3 = new DisplayContent();
+		roomDisplay3.setDisplay("Room3");
+		//purple
+		roomDisplay3.setBackground(new Color(153, 102, 255));
 		IDisplayableDimension objTileDetails3 = new DisplayableDimension(10, 9, 4, 7);
-		IDisplayable room3 = Factory.getInstance().getRoom(roomDisplay, objTileDetails3);
+		IDisplayable room3 = Factory.getInstance().getRoom(roomDisplay3, objTileDetails3);
 		
+		////Room4
+		IDisplayContent roomDisplay4 = new DisplayContent();
+		roomDisplay4.setDisplay("Room4");
+		//turquoise blue
+		roomDisplay4.setBackground(new Color(51, 204, 204));
 		IDisplayableDimension objTileDetails4 = new DisplayableDimension(10, 16, 4, 5);
-		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay, objTileDetails4);
+		IDisplayable room4 = Factory.getInstance().getRoom(roomDisplay4, objTileDetails4);
 		
+		////Room5
+		IDisplayContent roomDisplay5 = new DisplayContent();
+		roomDisplay5.setDisplay("Room5");
+		//light yellow
+		roomDisplay5.setBackground(new Color(255, 255, 153));
 		IDisplayableDimension objTileDetails5 = new DisplayableDimension(17, 0, 4, 12);
-		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay, objTileDetails5);
+		IDisplayable room5 = Factory.getInstance().getRoom(roomDisplay5, objTileDetails5);
 		
+		////Room6
+		IDisplayContent roomDisplay6 = new DisplayContent();
+		roomDisplay6.setDisplay("Room6");
+		//purple
+		roomDisplay6.setBackground(new Color(153, 102, 255));
 		IDisplayableDimension objTileDetails6 = new DisplayableDimension(17, 12, 4, 9);
-		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay, objTileDetails6);
+		IDisplayable room6 = Factory.getInstance().getRoom(roomDisplay6, objTileDetails6);
 		
 		for(int i = 0; i < this.observers.size(); i++)
 		{
@@ -157,14 +178,14 @@ public class LCPDriver implements ILCPDriver {
 		stoveDisp.setDisplay("Stove");
 		stoveDisp.setBackground(new Color(211,211,211));
 		
-		IDisplayableDimension stoveTileDetails = new DisplayableDimension(17, 0, 1, 1);
+		IDisplayableDimension stoveTileDetails = new DisplayableDimension(18, 0, 2, 1);
 		IDisplayable stove = Factory.getInstance().getNonMoveableFurniture(stoveDisp, stoveTileDetails);
 		
 		IDisplayContent fridgeDisp = new DisplayContent();
 		fridgeDisp.setDisplay("Fridge");
 		fridgeDisp.setBackground(new Color(255,250,250));
 		
-		IDisplayableDimension fridgeTileDetails = new DisplayableDimension(17, 1, 3, 2);
+		IDisplayableDimension fridgeTileDetails = new DisplayableDimension(18, 1, 4, 2);
 		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
 		
 		IDisplayContent cupboardDisp1 = new DisplayContent();
@@ -190,8 +211,8 @@ public class LCPDriver implements ILCPDriver {
 		IDisplayContent cupboardDisp4 = new DisplayContent(); 
 	    cupboardDisp4.setDisplay("CupBoard4"); 
 	    //same as fridge 
-	    cupboardDisp4.setBackground(new Color(153, 204, 255)); 
-		IDisplayableDimension cupboardTileDetails4 = new DisplayableDimension(17, 3, 1, 4);
+	    cupboardDisp4.setBackground(new Color(255,250,250)); 
+		IDisplayableDimension cupboardTileDetails4 = new DisplayableDimension(18, 3, 2, 4);
 		IDisplayable cupBoard4 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp4, cupboardTileDetails4);
 		
 		IDisplayContent windowDisp = new DisplayContent();
@@ -203,13 +224,13 @@ public class LCPDriver implements ILCPDriver {
 		IDisplayContent tableDisp = new DisplayContent();
 		tableDisp.setDisplay("Table");
 		tableDisp.setBackground(new Color(128,0,0));
-		IDisplayableDimension tableTileDetails = new DisplayableDimension(17, 7, 1, 2);
+		IDisplayableDimension tableTileDetails = new DisplayableDimension(19, 7, 2, 2);
 		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
 		
 		IDisplayContent waterDisp = new DisplayContent();
 		waterDisp.setDisplay("Water");
 		waterDisp.setBackground(new Color(240,248,255));
-		IDisplayableDimension waterTileDetails = new DisplayableDimension(17, 10, 2, 1);
+		IDisplayableDimension waterTileDetails = new DisplayableDimension(18, 10, 2, 1);
 		IDisplayable water = Factory.getInstance().getNonMoveableFurniture(waterDisp, waterTileDetails);
 		
 		IDisplayContent stairDiagonalDisp = new DisplayContent();
@@ -221,7 +242,7 @@ public class LCPDriver implements ILCPDriver {
 		IDisplayContent stairDownDisp = new DisplayContent();
 		stairDownDisp.setDisplay("StairDown");
 		stairDownDisp.setBackground(new Color(205,133,63));
-		IDisplayableDimension stairDownTileDetails = new DisplayableDimension(17, 11, 4, 1);
+		IDisplayableDimension stairDownTileDetails = new DisplayableDimension(18, 11, 5, 1);
 		IDisplayable stairDown = Factory.getInstance().getNonMoveableFurniture(stairDownDisp, stairDownTileDetails);
 		
 		for(int i = 0; i < this.observers.size(); i++)
@@ -257,6 +278,30 @@ public class LCPDriver implements ILCPDriver {
 		roomF3R1.addFurniture(stairDiag);
 		roomF3R1.addFurniture(stairDown);
 	}
+	
+	private final void initPerson() {
+		IDisplayContent personDisplay = new DisplayContent();
+		personDisplay.setDisplay("Person");
+		//skin color
+		personDisplay.setBackground(new Color(234,192,134));
+		
+		//adding person to floor 3 room 1
+		Iterator<IDisplayable> itr = ((IBuilding)this.building).getFloors();
+		itr.next();
+		itr.next();
+		IFloor floor3 = (IFloor)itr.next();
+		Iterator<IDisplayable> itrRoomsTF = floor3.getRooms();
+		IRoom roomF3R1 = (IRoom) itrRoomsTF.next();
+		
+		IDisplayableDimension personDimension = new DisplayableDimension(18, 9, 3, 1);
+		IDisplayable person = Factory.getInstance().getPerson(roomF3R1, personDisplay, personDimension);
+		for(int i = 0; i < this.observers.size(); i++)
+		{
+			person.addObserver(this.observers.get(i));
+		}
+		
+		roomF3R1.addPerson(person);
+	}
 
 	@Override
 	public final IDisplayable getBuilding() {
@@ -265,6 +310,7 @@ public class LCPDriver implements ILCPDriver {
 		this.initFloors();
 		this.initRooms();
 		this.initFurnitures();
+		this.initPerson();
 		return this.building;
 	}
 

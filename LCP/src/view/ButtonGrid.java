@@ -75,8 +75,8 @@ public class ButtonGrid implements IObserver {
 	private static void createAndShowGui() {
 
 		ButtonGrid btg = new ButtonGrid();
-		//btg.building = btg.getBuilding();
-		btg.building = btg.creationalTests.createBuilding();
+		btg.building = btg.getBuilding();
+		//btg.building = btg.creationalTests.createBuilding();
 		btg.checkForUpdate();
 	}
 	
