@@ -47,6 +47,7 @@ public class Factory {
 	
 	public IPerson getPerson(IRoom room, IDisplayContent personDisplay, IDisplayableDimension objTileDetails) {
 		IPerson person = new Person();
+		person.setRoom(room);
 		person.setDisplay(personDisplay);
 		person.setTiles(objTileDetails);
 		return person;

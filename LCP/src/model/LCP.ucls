@@ -1,105 +1,272 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.2.2" icons="true" always-add-relationships="true" generalizations="true" realizations="true" 
   associations="true" dependencies="true" nesting-relationships="true" router="FAN">  
-  <interface id="1" language="java" name="model.IRoom" project="LCP" file="/LCP/src/model/IRoom.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1187" y="457"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </interface>  
-  <interface id="2" language="java" name="model.IBuilding" project="LCP" file="/LCP/src/model/IBuilding.java" 
+  <interface id="1" language="java" name="model.ILCPDriver" project="LCP" file="/LCP/src/model/ILCPDriver.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="660" y="301"/>    
+    <position height="-1" width="-1" x="1440" y="455"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="3" language="java" name="model.IPet" project="LCP" file="/LCP/src/model/IPet.java" binary="false" 
+  <interface id="2" language="java" name="model.ITile" project="LCP" file="/LCP/src/model/ITile.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="904" y="430"/>    
+    <position height="-1" width="-1" x="1750" y="1335"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="4" language="java" name="model.IPerson" project="LCP" file="/LCP/src/model/IPerson.java" binary="false" 
+  <interface id="3" language="java" name="model.IInterceptable" project="LCP" file="/LCP/src/model/IInterceptable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="896" y="367"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="4" language="java" name="model.IBuilding" project="LCP" file="/LCP/src/model/IBuilding.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="317" width="293" x="1181" y="825"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="5" language="java" name="model.IDisplayContent" project="LCP" 
+    file="/LCP/src/model/IDisplayContent.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="347" y="707"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="6" language="java" name="model.IDisplayableDimension" project="LCP" 
+    file="/LCP/src/model/IDisplayableDimension.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="624" y="597"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="7" language="java" name="model.IPerson" project="LCP" file="/LCP/src/model/IPerson.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1616" y="341"/>    
+    <position height="117" width="174" x="660" y="825"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="5" language="java" name="model.INonMoveableFurniture" project="LCP" 
+  <interface id="8" language="java" name="model.IObservable" project="LCP" file="/LCP/src/model/IObservable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1868" y="296"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="9" language="java" name="model.IEvent" project="LCP" file="/LCP/src/model/IEvent.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="2021" y="657"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="10" language="java" name="model.IFloor" project="LCP" file="/LCP/src/model/IFloor.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="177" width="267" x="874" y="825"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="11" language="java" name="model.IObserver" project="LCP" file="/LCP/src/model/IObserver.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1840" y="497"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="12" language="java" name="model.IDisplayable" project="LCP" file="/LCP/src/model/IDisplayable.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="177" width="295" x="1495" y="608"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="13" language="java" name="model.IPet" project="LCP" file="/LCP/src/model/IPet.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="77" width="147" x="1535" y="825"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <interface id="14" language="java" name="model.INonMoveableFurniture" project="LCP" 
     file="/LCP/src/model/INonMoveableFurniture.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1115" y="784"/>    
+    <position height="-1" width="-1" x="613" y="1132"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="6" language="java" name="model.IMoveableFurniture" project="LCP" 
+  <interface id="15" language="java" name="model.IMoveableFurniture" project="LCP" 
     file="/LCP/src/model/IMoveableFurniture.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1713" y="797"/>    
+    <position height="-1" width="-1" x="343" y="1131"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="7" language="java" name="model.IDisplayable" project="LCP" file="/LCP/src/model/IDisplayable.java" 
+  <interface id="16" language="java" name="model.IFurniture" project="LCP" file="/LCP/src/model/IFurniture.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1214" y="118"/>    
+    <position height="-1" width="-1" x="461" y="911"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <interface id="8" language="java" name="model.IFurniture" project="LCP" file="/LCP/src/model/IFurniture.java" 
+  <interface id="17" language="java" name="model.ILocationPoints" project="LCP" 
+    file="/LCP/src/model/ILocationPoints.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="157" width="256" x="1868" y="1619"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <enumeration id="18" language="java" name="model.EFurnitureCat" project="LCP" file="/LCP/src/model/EFurnitureCat.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1444" y="672"/>    
+    <position height="97" width="175" x="1188" y="214"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </enumeration>  
+  <interface id="19" language="java" name="model.IRoom" project="LCP" file="/LCP/src/model/IRoom.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="177" width="281" x="1722" y="825"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <generalization id="9">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="10">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="11">    
+  <dependency id="20">    
     <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <generalization id="21">    
+    <bendpoint x="1785" y="411"/>    
+    <end type="SOURCE" refId="12"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <generalization id="13">    
+  <generalization id="22">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="23">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <dependency id="24">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <generalization id="25">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <dependency id="26">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <dependency id="27">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="5"/>  
+  </dependency>  
+  <dependency id="28">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="17"/>  
+  </dependency>  
+  <dependency id="29">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <generalization id="30">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <generalization id="31">    
+    <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <generalization id="32">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="12"/>  
+  </generalization>  
+  <dependency id="33">    
     <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="7"/>  
-  </generalization>  
-  <generalization id="14">    
-    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="34">    
+    <bendpoint x="2241" y="825"/>    
+    <bendpoint x="2241" y="608"/>    
+    <bendpoint x="2241" y="411"/>    
+    <end type="SOURCE" refId="2"/>    
     <end type="TARGET" refId="8"/>  
   </generalization>  
-  <generalization id="15">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="7"/>  
+  <generalization id="35">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="16"/>  
+  </generalization>  
+  <dependency id="36">    
+    <bendpoint x="1504" y="825"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <generalization id="37">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="8"/>  
+  </generalization>  
+  <dependency id="38">    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="12"/>  
+  </dependency>  
+  <dependency id="39">    
+    <bendpoint x="2033" y="608"/>    
+    <bendpoint x="2033" y="825"/>    
+    <end type="SOURCE" refId="11"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="40">    
+    <bendpoint x="2097" y="411"/>    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
+  <generalization id="41">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="12"/>  
   </generalization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    

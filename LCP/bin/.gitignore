@@ -1,7 +1,6 @@
-/view/
-/viewIMPL/
 /controller/
 /factory/
-/tests/
-/modelIMPL/
 /model/
+/modelIMPL/
+/tests/
+/view/

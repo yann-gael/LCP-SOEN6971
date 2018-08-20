@@ -10,4 +10,7 @@ public interface IRoom extends IDisplayable{
 	public String getName();
 	public void setName(final String newName);
 	
+	public void addPerson(IDisplayable person);
+	public void removePerson(IDisplayable person);
+	public Iterator<IDisplayable> getPersons();
 }

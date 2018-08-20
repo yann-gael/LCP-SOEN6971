@@ -11,10 +11,12 @@ public class Room extends Displayable implements IRoom {
 
 	private List<IDisplayable> listOfFurniture;
 	private String roomName;
+	private List<IDisplayable> listOfPerson;
 
 	public Room() {
 		super();
 		this.listOfFurniture = new ArrayList<IDisplayable>();
+		this.listOfPerson = new ArrayList<IDisplayable>();
 	}
 
 	@Override
@@ -40,6 +42,21 @@ public class Room extends Displayable implements IRoom {
 	@Override
 	public void setName(String newName) {
 		this.roomName = newName;
+	}
+
+	@Override
+	public void addPerson(IDisplayable person) {
+		this.listOfPerson.add(person);
+	}
+
+	@Override
+	public void removePerson(IDisplayable person) {
+		this.listOfPerson.remove(person);
+	}
+
+	@Override
+	public Iterator<IDisplayable> getPersons() {
+		return this.listOfPerson.iterator();
 	}
 
 }

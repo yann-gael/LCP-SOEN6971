@@ -1,7 +1,6 @@
 package tests;
 
 import java.awt.Color;
-import java.util.ArrayList;
 
 //import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +19,6 @@ import model.IRoom;
 import model.ITile;
 import modelIMPL.DisplayContent;
 import modelIMPL.DisplayableDimension;
-import view.ButtonGrid;
 
 public class CreationalTests {
 	public static final Integer horizontalSize = 840;
@@ -193,7 +191,7 @@ public class CreationalTests {
 		//shade of brown and green
 		stoveDisp.setBackground(new Color(153, 153, 102));
 		
-	    IDisplayableDimension stoveTileDetails = new DisplayableDimension(17, 0, 1, 1);
+	    IDisplayableDimension stoveTileDetails = new DisplayableDimension(18, 0, 2, 1);
 		IDisplayable stove = Factory.getInstance().getNonMoveableFurniture(stoveDisp, stoveTileDetails);
 		stove.addObserver(this.observer);
 		
@@ -202,7 +200,7 @@ public class CreationalTests {
 		// shade of white and blue
 		fridgeDisp.setBackground(new Color(153, 204, 255));
 		
-		IDisplayableDimension fridgeTileDetails = new DisplayableDimension(17, 1, 3, 2);
+		IDisplayableDimension fridgeTileDetails = new DisplayableDimension(18, 1, 4, 2);
 		IDisplayable fridge = Factory.getInstance().getNonMoveableFurniture(fridgeDisp, fridgeTileDetails);
 		fridge.addObserver(this.observer);
 		
@@ -232,9 +230,9 @@ public class CreationalTests {
 		
 		IDisplayContent cupboardDisp4 = new DisplayContent(); 
 	    cupboardDisp4.setDisplay("CupBoard4"); 
-	    //same as fridge 
-	    cupboardDisp4.setBackground(new Color(153, 204, 255)); 
-		IDisplayableDimension cupboardTileDetails4 = new DisplayableDimension(17, 3, 1, 4);
+	    //same as above 
+	    cupboardDisp4.setBackground(new Color(210,105,30)); 
+		IDisplayableDimension cupboardTileDetails4 = new DisplayableDimension(18, 3, 2, 4);
 		IDisplayable cupBoard4 = Factory.getInstance().getNonMoveableFurniture(cupboardDisp4, cupboardTileDetails4);
 		cupBoard4.addObserver(this.observer);
 		
@@ -250,7 +248,7 @@ public class CreationalTests {
 		tableDisp.setDisplay("Table");
 		//maroon
 		tableDisp.setBackground(new Color(128,0,0));
-		IDisplayableDimension tableTileDetails = new DisplayableDimension(17, 7, 1, 2);
+		IDisplayableDimension tableTileDetails = new DisplayableDimension(19, 7, 2, 2);
 		IDisplayable kitchenTable = Factory.getInstance().getNonMoveableFurniture(tableDisp, tableTileDetails);
 		kitchenTable.addObserver(this.observer);
 		
@@ -258,7 +256,7 @@ public class CreationalTests {
 		waterDisp.setDisplay("Water");
 		//AliceBlue
 		waterDisp.setBackground(new Color(240,248,255));
-		IDisplayableDimension waterTileDetails = new DisplayableDimension(17, 10, 2, 1);
+		IDisplayableDimension waterTileDetails = new DisplayableDimension(18, 10, 2, 1);
 		IDisplayable water = Factory.getInstance().getNonMoveableFurniture(waterDisp, waterTileDetails);
 		water.addObserver(this.observer);
 		
@@ -274,7 +272,7 @@ public class CreationalTests {
 		stairDownDisp.setDisplay("StairDown");
 		//Peru
 		stairDownDisp.setBackground(new Color(205,133,63));
-		IDisplayableDimension stairDownTileDetails = new DisplayableDimension(17, 11, 4, 1);
+		IDisplayableDimension stairDownTileDetails = new DisplayableDimension(18, 11, 5, 1);
 		IDisplayable stairDown = Factory.getInstance().getNonMoveableFurniture(stairDownDisp, stairDownTileDetails);
 		stairDown.addObserver(this.observer);
 		
@@ -299,8 +297,30 @@ public class CreationalTests {
 	
 	//yet to figure out where to write this to create a template
 	public IDisplayable createBuilding() {
-		testFurniture();
+		testPerson();
 		return this.building;
+	}
+	
+	@Test
+	public void testPerson() {
+		testFurniture();
+		IDisplayContent personDisplay = new DisplayContent();
+		personDisplay.setDisplay("Person");
+		//skin color
+		personDisplay.setBackground(new Color(234,192,134));
+		
+		Iterator<IDisplayable> itr = ((IBuilding)this.building).getFloors();
+		itr.next();
+		itr.next();
+		IFloor floor3 = (IFloor)itr.next();
+		Iterator<IDisplayable> itrRoomsTF = floor3.getRooms();
+		IRoom roomF3R1 = (IRoom) itrRoomsTF.next();
+		
+		IDisplayableDimension personDimension = new DisplayableDimension(18, 9, 3, 1);
+		IDisplayable person = Factory.getInstance().getPerson(roomF3R1, personDisplay, personDimension);
+		person.addObserver(this.observer);
+		
+		roomF3R1.addPerson(person);
 	}
 	
 	@Test

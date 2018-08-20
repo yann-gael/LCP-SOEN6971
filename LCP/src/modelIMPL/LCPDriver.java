@@ -142,9 +142,9 @@ public class LCPDriver implements ILCPDriver {
 			else if(ctr == 1) {
 				tmpFloor.addRoom(room2);
 				tmpFloor.addRoom(room3);
+				tmpFloor.addRoom(room4);
 			}
 			else if(ctr == 2) {
-				tmpFloor.addRoom(room4);
 				tmpFloor.addRoom(room5);
 				tmpFloor.addRoom(room6);
 			}

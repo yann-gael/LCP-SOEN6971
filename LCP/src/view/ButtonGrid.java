@@ -109,6 +109,12 @@ public class ButtonGrid implements IObserver {
 					IDisplayable furn = furns.next();
 					furn.checkAddition();
 				}
+				
+				Iterator<IDisplayable> persons = ((IRoom) room).getPersons();
+				while (persons.hasNext()) {
+					IDisplayable person = persons.next();
+					person.checkAddition();
+				}
 			}
 		}
 	}
@@ -131,7 +137,7 @@ public class ButtonGrid implements IObserver {
 		        JTextField text1 = new JTextField(); 
 		        text1.setText(disp.getDisplay()); 
 		        text1.setOpaque(false);         
-		        grid[startY - i][j + startX].add(text1);
+		        //grid[startY - i][j + startX].add(text1);
 			}
 		}
 		
