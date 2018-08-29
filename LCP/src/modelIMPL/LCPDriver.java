@@ -14,8 +14,11 @@ import model.ILCPDriver;
 import model.IObserver;
 import model.IRoom;
 import model.ITile;
+import view.ButtonGrid;
 
-public class LCPDriver implements ILCPDriver {
+public class LCPDriver implements ILCPDriver,Runnable {
+	
+	
 	private final Integer HORIZONTAL_SIZE = 840;
 	private final Integer VERTICAL_SIZE = 840;
 	private final Integer TILE_MATRIX_SIZE = 21; /* 21 x 21 */
@@ -334,6 +337,60 @@ public class LCPDriver implements ILCPDriver {
 	@Override
 	public Iterator<IObserver> getObserver() {
 		return this.observers.iterator();
+	}
+
+	@Override
+	public void run() {
+	//	Thread.sleep(millis);
+		
+	}
+	
+	@Override
+	public void movePerson() {
+		Iterator<IDisplayable> itr = ((IBuilding)this.building).getFloors();
+		itr.next();
+		itr.next();
+		IFloor floor3 = (IFloor)itr.next();
+		Iterator<IDisplayable> itrRoomsTF = floor3.getRooms();
+		IRoom roomF3R1 = (IRoom) itrRoomsTF.next();
+		IDisplayable person = null;
+		Iterator<IDisplayable> persons = roomF3R1.getPersons();
+		
+		person = persons.next();
+		IDisplayableDimension personDimension = new DisplayableDimension(18, 8, 3, 1);	
+		person.setTiles(personDimension);
+		this.checkForUpdate();
+	}
+	
+	public void checkForUpdate()  {
+		
+
+		Iterator<IDisplayable> floors = ((IBuilding) building).getFloors();
+		IDisplayable person = null;
+		while (floors.hasNext()) {
+			IDisplayable floor = floors.next();
+			floor.checkAddition();
+
+			Iterator<IDisplayable> rooms = ((IFloor) floor).getRooms();
+			while (rooms.hasNext()) {
+				IDisplayable room = rooms.next();
+				room.checkAddition();
+
+				Iterator<IDisplayable> furns = ((IRoom) room).getFurniture();
+				while (furns.hasNext()) {
+					IDisplayable furn = furns.next();
+					furn.checkAddition();
+				}
+				
+				Iterator<IDisplayable> persons = ((IRoom) room).getPersons();
+				while (persons.hasNext()) {
+					person = persons.next();
+					
+					person.checkAddition();
+				}
+			}
+		}
+		
 	}
 
 }

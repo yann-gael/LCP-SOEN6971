@@ -22,17 +22,18 @@ import model.ILCPDriver;
 import model.IObserver;
 import model.IRoom;
 import model.ITile;
+import modelIMPL.DisplayableDimension;
 import modelIMPL.LCPDriver;
 import tests.CreationalTests;
 
-public class ButtonGrid implements IObserver {
+public class ButtonGrid extends Thread implements IObserver{
 
 	private JFrame frame; // creates frame
 	private JPanel[][] grid; // names the grid of buttons
 	private int height, width;
 	private IDisplayable building;
 	
-	private ILCPDriver lcpDriver;
+	private static ILCPDriver lcpDriver;
 	private CreationalTests creationalTests;
 
 	public ButtonGrid() {
@@ -70,57 +71,48 @@ public class ButtonGrid implements IObserver {
 
 	public IDisplayable getBuilding() {
 		return this.lcpDriver.getBuilding();
+		
 	}
 	
 	private static void createAndShowGui() {
 
-		ButtonGrid btg = new ButtonGrid();
-		btg.building = btg.getBuilding();
+		//ButtonGrid btg = new ButtonGrid();
+		//btg.building = btg.getBuilding();
+		
 		//btg.building = btg.creationalTests.createBuilding();
-		btg.checkForUpdate();
+		
 	}
 	
 	
 	
 	public static void main(String[] args) {
+		ButtonGrid btg = new ButtonGrid();
+		btg.start();
 		
-		SwingUtilities.invokeLater(new Runnable() {
-	         public void run() {
-	            createAndShowGui();
-	         }
-	      });
-		
-	}
-
-	private void checkForUpdate() {
-
-		Iterator<IDisplayable> floors = ((IBuilding) building).getFloors();
-		while (floors.hasNext()) {
-			IDisplayable floor = floors.next();
-			floor.checkAddition();
-
-			Iterator<IDisplayable> rooms = ((IFloor) floor).getRooms();
-			while (rooms.hasNext()) {
-				IDisplayable room = rooms.next();
-				room.checkAddition();
-
-				Iterator<IDisplayable> furns = ((IRoom) room).getFurniture();
-				while (furns.hasNext()) {
-					IDisplayable furn = furns.next();
-					furn.checkAddition();
-				}
-				
-				Iterator<IDisplayable> persons = ((IRoom) room).getPersons();
-				while (persons.hasNext()) {
-					IDisplayable person = persons.next();
-					person.checkAddition();
-				}
-			}
+		try {
+			btg.sleep(5000);
+			movePerson();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+//		SwingUtilities.invokeLater(new Runnable() {
+//	         public void run() {
+//	            createAndShowGui();
+//	         }
+//	      });
+		
 	}
+	
+	private static void movePerson() {
+		lcpDriver.movePerson();
+	}
+
+	
 
 	@Override
 	public void update(IDisplayable observable, IEvent event) {
+		//this.frame.removeAll();
 		IDisplayableDimension tileDet = observable.getTileDetails();
 		IDisplayContent disp = observable.getDisplay();
 		
@@ -145,6 +137,14 @@ public class ButtonGrid implements IObserver {
 
 	@Override
 	public void update(ITile observable) {
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		this.building = this.getBuilding();
+		lcpDriver.checkForUpdate();
 		
 	}
 }
