@@ -5,7 +5,7 @@ import java.awt.Color;
 
 import model.IDisplayContent;
 
-public class DisplayContent implements IDisplayContent {
+public class DisplayContent implements IDisplayContent { // A class name cannot be a verb!
 	private String display;
 	private Color backgroundColor;
 	
